@@ -1,0 +1,34 @@
+{
+  "name": "dependency-analysis",
+  "version": "1.0.0",
+  "description": "Comprehensive dependency analyzer that identifies unused, missing, phantom, and circular dependencies. Provides security vulnerability detection and version health analysis for optimized dependency management.",
+  "main": "scripts/analyze-dependencies.js",
+  "bin": {
+    "analyze-dependencies": "scripts/analyze-dependencies.js"
+  },
+  "scripts": {
+    "test": "node scripts/analyze-dependencies.js ./test-project",
+    "analyze": "node scripts/analyze-dependencies.js ."
+  },
+  "keywords": [
+    "dependencies",
+    "analysis",
+    "unused",
+    "phantom",
+    "circular",
+    "security",
+    "outdated",
+    "bundle-optimization",
+    "dependency-management"
+  ],
+  "author": "Claude",
+  "license": "MIT",
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "dependencies": {
+    "acorn": "^8.11.2",
+    "acorn-walk": "^8.3.0",
+    "semver": "^7.7.3"
+  }
+}

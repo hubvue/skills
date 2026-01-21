@@ -1,0 +1,56 @@
+{
+  "name": "unit-test-generator",
+  "version": "1.0.0",
+  "description": "Intelligent unit test generator for frontend projects that detects existing test frameworks and generates comprehensive tests",
+  "main": "scripts/detect-test-framework.js",
+  "bin": {
+    "detect-test-framework": "scripts/detect-test-framework.js",
+    "generate-test": "scripts/generate-test.js",
+    "setup-test-config": "scripts/setup-test-config.js"
+  },
+  "scripts": {
+    "test": "node scripts/detect-test-framework.js ./test-project",
+    "demo": "node scripts/generate-test.js ../test-project/components/Button.js '{}' ."
+  },
+  "keywords": [
+    "unit-test",
+    "frontend",
+    "testing",
+    "jest",
+    "vitest",
+    "mocha",
+    "react",
+    "vue",
+    "angular",
+    "test-generation",
+    "automation"
+  ],
+  "author": "Claude",
+  "license": "MIT",
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "jest": "^29.0.0",
+    "vitest": "^0.34.0",
+    "mocha": "^10.0.0",
+    "chai": "^4.0.0",
+    "@testing-library/react": "^13.0.0",
+    "@testing-library/vue": "^7.0.0",
+    "@testing-library/jest-dom": "^5.0.0",
+    "sinon": "^15.0.0"
+  },
+  "peerDependencies": {
+    "react": ">=16.8.0",
+    "vue": ">=3.0.0"
+  },
+  "peerDependenciesMeta": {
+    "react": {
+      "optional": true
+    },
+    "vue": {
+      "optional": true
+    }
+  }
+}

@@ -1,0 +1,34 @@
+{
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
+  "name": "kim-skills",
+  "owner": {
+    "name": "kim",
+    "email": "cckcc.kim@gmail.com"
+  },
+  "metadata": {
+    "description": "Kim skills by claude plugin",
+    "version": "0.0.1"
+  },
+  "plugins": [
+    {
+      "name": "fe-analysis",
+      "description": "Frontend project analysis by claude plugin",
+      "source": "./",
+      "strict": false,
+      "skills": [
+        "./fe-analysis/architecture-analysis",
+        "./fe-analysis/dependency-analysis",
+        "./fe-analysis/unit-test-generator"
+      ]
+    },
+    {
+      "name": "project",
+      "description": "project skills by claude plugin",
+      "source": "./",
+      "strict": false,
+      "skills": [
+        "./project/resume-project-analyzer"
+      ]
+    }
+  ]
+}
