@@ -44,7 +44,7 @@ Project-related skills for documentation and analysis.
 
 ## Requirements
 
-- Node.js >= 14.0.0
+- Node.js >= 20.0.0
 
 ## License
 
