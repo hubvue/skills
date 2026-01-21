@@ -29,6 +29,15 @@
       "skills": [
         "./project/resume-project-analyzer"
       ]
+    },
+    {
+      "name": "productivity",
+      "description": "productivity skills by claude plugin",
+      "source": "./",
+      "strict": false,
+      "skills": [
+        "./productivity/prompt-interviewer"
+      ]
     }
   ]
 }
