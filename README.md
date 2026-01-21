@@ -1,4 +1,4 @@
-# kim-skills
+# skills
 
 A collection of Claude Code Skills that extend Claude Code's functionality for frontend analysis and project understanding.
 
