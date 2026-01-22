@@ -6,6 +6,27 @@ A collection of Claude Code Skills that extend Claude Code's functionality for f
 
 This repository contains reusable skills that can be invoked via `/skill-name` commands in Claude Code. Each skill is self-contained and distributed through the Claude Code marketplace.
 
+## Requirements
+
+- Node.js >= 20.0.0
+- Ability to run npx bun commands
+
+## Installation
+
+### Quick Install (Recommended)
+
+```shell
+npx skills add hubvue/skills
+```
+
+### Register as Plugin Marketplace
+Run the following command in Claude Code:
+
+```claude
+/plugin marketplace add hubvue/skills
+```
+
+
 ## Plugins
 
 ### fe-analysis
@@ -108,16 +129,6 @@ Productivity tools for prompt engineering and workflow optimization.
 ├── scripts/           # Executable Node.js scripts (optional)
 └── references/        # Supporting documentation (optional)
 ```
-
-## Quick Start
-
-1. Clone this repository
-2. Add to Claude Code plugin directory
-3. Invoke skills via `/skill-name` commands
-
-## Requirements
-
-- Node.js >= 20.0.0
 
 ## License
 
