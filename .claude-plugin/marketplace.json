@@ -27,6 +27,7 @@
       "source": "./",
       "strict": false,
       "skills": [
+        "./project/prd-gatekeeper",
         "./project/resume-project-analyzer"
       ]
     },
@@ -36,7 +37,8 @@
       "source": "./",
       "strict": false,
       "skills": [
-        "./productivity/prompt-interviewer"
+        "./productivity/prompt-interviewer",
+        "./productivity/release-skills"
       ]
     }
   ]
