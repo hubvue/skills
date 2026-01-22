@@ -27,6 +27,7 @@
       "source": "./",
       "strict": false,
       "skills": [
+        "./project/api-generator",
         "./project/prd-gatekeeper",
         "./project/resume-project-analyzer"
       ]
