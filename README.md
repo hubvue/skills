@@ -160,4 +160,4 @@ Productivity tools for prompt engineering and workflow optimization.
 
 ## License
 
-Contact the owner for licensing information.
+MIT
