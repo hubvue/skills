@@ -17,7 +17,8 @@ The repository is configured for distribution via Claude Code marketplace throug
   "name": "kim-skills",
   "plugins": [
     { "name": "fe-analysis", "skills": ["./fe-analysis/architecture-analysis", ...] },
-    { "name": "project", "skills": ["./project/resume-project-analyzer"] }
+    { "name": "project", "skills": ["./project/resume-project-analyzer"] },
+    { "name": "productivity", "skills": ["./productivity/prompt-interviewer"] }
   ]
 }
 ```
@@ -46,7 +47,7 @@ Each skill lives in its own directory:
 **package.json** (optional) is used when the skill includes executable Node.js scripts:
 - `bin` entries define CLI commands
 - `scripts.test` runs the skill on a test project
-- `engines.node` specifies minimum Node version (typically `>=14.0.0`)
+- `engines.node` specifies minimum Node version (typically `>=14.0.0`, main repo requires `>=20.0.0`)
 
 **scripts/** directory contains executable Node.js utilities referenced in SKILL.md examples.
 
@@ -131,3 +132,19 @@ Transforms codebases into authentic, interview-defensible resume project experie
 **Critical principle:** Never finalize MEDIUM or LOW confidence claims without user clarification. The skill prioritizes correctness and interview credibility over exaggeration.
 
 **Output structure:** Fixed format including Project Summary, Resume-Ready Project Experience, Key Technical Highlights, Interview Defense Preparation, and Confidence Notes.
+
+### productivity/prompt-interviewer
+
+Refines and completes prompts through structured analysis and iterative questioning.
+
+**When to invoke:** When a user has an initial prompt but needs help refining it for better LLM performance: (1) When a prompt lacks clarity or context, (2) When constraints or boundaries are missing, (3) When output formats or quality criteria are undefined, (4) When there are ambiguities or conflicting requirements.
+
+**Key workflow (6 steps):**
+1. Prompt Analysis - Analyze goal clarity, context completeness, constraints, audience, I/O formats, quality criteria, edge cases
+2. Interview Mode - Ask targeted, high-impact questions about missing information (never assume or silently fill gaps)
+3. Iterative Loop - Re-analyze after each answer, continue interviewing until complete
+4. Completion Criteria - Finalize only when goal, role, inputs, outputs, constraints are unambiguous
+5. Run Gate - Present final prompt and ask "Do you want me to run this prompt now with the current LLM?"
+6. Final Output - If user says "Run", execute the prompt immediately using the current LLM
+
+**Critical principle:** The skill is an interviewer, not a prompt rewriter. Questions must be concrete, actionable, grouped by topic, and explain WHY each question matters.
