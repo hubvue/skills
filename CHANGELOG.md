@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file.
 
+## 1.1.0 - 2026-01-22
+
+### Features
+- `api-generator`: New skill for autonomous frontend API code generation with project-aware integration support. Detects TypeScript, request patterns, mock infrastructure, and test frameworks to generate artifact-gated code.
+- `prd-gatekeeper`: Engineering PRD gatekeeper that validates PRDs against 5 hard quality gates and ensures production-readiness for engineers.
+
+### Documentation
+- Updated README with new skills documentation
+- Added CHANGELOG.md and CHANGELOG.zh.md for version tracking
+
 ## 1.0.1 - 2026-01-22
 
 ### Documentation

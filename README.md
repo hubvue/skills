@@ -100,6 +100,21 @@ Project-related skills for documentation and analysis.
 
   **Output structure:** Fixed format including Project Summary, Resume-Ready Project Experience, Key Technical Highlights, Interview Defense Preparation, and Confidence Notes.
 
+- **api-generator** - Autonomous Frontend Code Generation Agent specialized in project-aware API integration. Converts backend API specs and mock data into frontend request code, types, mocks, and tests, strictly following existing project conventions.
+
+  **When to invoke:** When user provides backend API specs needing frontend request code, mock data to convert to request types and handlers, API endpoints to add with types mocks and tests, or new API integration following existing project conventions.
+
+  **Key workflow (3 phases):**
+  1. Project Recon - Detect TypeScript, request patterns (axios/fetch/umi-request/apollo/react-query/swr/custom), mock infrastructure (msw/vite-plugin-mock/mockjs/custom), and test frameworks
+  2. Plan Mode - Generate mandatory plan before execution including project recon summary, capability-gated artifacts, file change list, and incremental merge strategy
+  3. Execution - Generate request functions, types, mock data, and tests following detected project patterns
+
+  **Safety rules:** Never refactor unrelated code, never delete existing code, prefer additive changes only.
+
+- **prd-gatekeeper** - Engineering PRD gatekeeper that validates PRDs against 5 hard quality gates and ensures production-readiness for engineers. Blocks progress when engineering risk exists.
+
+  **When to invoke:** When reviewing PRDs to ensure they are production-ready and contain no implicit product decisions that would be pushed into implementation.
+
 ### productivity
 
 Productivity tools for prompt engineering and workflow optimization.
@@ -119,6 +134,19 @@ Productivity tools for prompt engineering and workflow optimization.
   6. Final Output - If user says "Run", execute the prompt immediately using the current LLM
 
   **Critical principle:** The skill is an interviewer, not a prompt rewriter. Questions must be concrete, actionable, grouped by topic, and explain WHY each question matters.
+
+- **release-skills** - Automates the release process for kim-skills plugin: analyzes changes since last tag, updates CHANGELOG (EN/CN), bumps marketplace.json version, commits, and creates version tag.
+
+  **When to invoke:** When user requests release, publishing, version bump, or push to remote with uncommitted changes.
+
+  **Key workflow:**
+  1. Analyze changes since last tag
+  2. Determine version bump (patch/minor/major)
+  3. Check and update README if needed
+  4. Update CHANGELOG.md and CHANGELOG.zh.md
+  5. Update marketplace.json version
+  6. Commit all changes
+  7. Create version tag
 
 ## Skill Structure
 
