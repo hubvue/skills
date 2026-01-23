@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file.
 
+## 1.2.0 - 2026-01-23
+
+### Features
+- `skills-orchestrator`: New skill for interactive skills orchestration. Enables chaining multiple skills where output of step i becomes input of step i-1. Supports dry-run mode, trace logging, output validation, and safety guardrails including prompt injection protection and secret redaction.
+
+### Documentation
+- Updated README with skills-orchestrator documentation
+
 ## 1.1.0 - 2026-01-22
 
 ### Features

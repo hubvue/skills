@@ -135,6 +135,18 @@ Productivity tools for prompt engineering and workflow optimization.
 
   **Critical principle:** The skill is an interviewer, not a prompt rewriter. Questions must be concrete, actionable, grouped by topic, and explain WHY each question matters.
 
+- **skills-orchestrator** - Interactive skills orchestrator for chaining multiple skills where the output of step i becomes the input of step i-1. Supports dry-run mode, trace logging, output validation, and safety guardrails. Enables execution of complex multi-step workflows with determinism and auditability.
+
+  **When to invoke:** When you need to (1) Chain multiple skills together in a specific order, (2) Pass outputs between skills as inputs, (3) Execute complex multi-step workflows with traceability, (4) Run skills in dry-run mode before execution, (5) Debug or audit multi-skill workflows.
+
+  **Key workflow:**
+  1. Interactive Setup - Collect pipeline configuration (skills, step goals, templates, context, execution mode)
+  2. Planning Output - Generate pipeline plan showing all steps and configurations
+  3. Execution - Run skills sequentially with input/output chaining and validation
+  4. Trace Log - Optional detailed logging of each step's input, output, and validation results
+
+  **Safety features:** Simulation mode when skills unavailable, prompt injection protection, secret redaction in logs, no destructive actions without user approval.
+
 - **release-skills** - Automates the release process for kim-skills plugin: analyzes changes since last tag, updates CHANGELOG (EN/CN), bumps marketplace.json version, commits, and creates version tag.
 
   **When to invoke:** When user requests release, publishing, version bump, or push to remote with uncommitted changes.
