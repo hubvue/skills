@@ -39,6 +39,7 @@
       "strict": false,
       "skills": [
         "./productivity/prompt-interviewer",
+        "./productivity/skills-orchestrator",
         "./productivity/release-skills"
       ]
     }
