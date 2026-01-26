@@ -148,6 +148,16 @@ Context engineering skills for prompt optimization and management.
 
   **Critical principle:** The skill is an interviewer, not a prompt rewriter. Questions must be concrete, actionable, grouped by topic, and explain WHY each question matters.
 
+- **context-probe** - Implicit system-level skill that monitors context integrity, system prompt survival, and instruction drift. Always operates implicitly without user invocation. Warns when context is degraded or lost.
+
+  **When to invoke:** Never invoke directly - this skill operates implicitly at system level.
+
+  **Key features:**
+  - Detects whether system instructions, CLAUDE.md rules, and critical context are still present
+  - Provides machine-readable telemetry for external tooling
+  - Warns user when context is degraded or lost
+  - Self-healing behavior to restate critical constraints when degraded
+
 ### productivity
 
 Productivity tools for workflow optimization.

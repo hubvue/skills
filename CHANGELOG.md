@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file.
 
+## 1.6.0 - 2026-01-26
+
+### Features
+- `context-probe`: New implicit system-level skill that monitors context integrity, system prompt survival, and instruction drift. Always operates implicitly without user invocation. Warns when context is degraded or lost.
+
+### Documentation
+- Updated CLAUDE.md with context-probe documentation.
+- Updated README with context-probe skill description.
+
 ## 1.5.1 - 2026-01-26
 
 ### Features
