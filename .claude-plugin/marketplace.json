@@ -50,7 +50,8 @@
       "strict": false,
       "skills": [
         "./context-engineering/prompt-minifier",
-        "./context-engineering/prompt-interviewer"
+        "./context-engineering/prompt-interviewer",
+        "./context-engineering/context-probe"
       ]
     }
   ]
