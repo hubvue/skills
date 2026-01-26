@@ -2,6 +2,11 @@
 
 All notable changes to this project will be documented in this file.
 
+## 1.6.2 - 2026-01-26
+
+### Refactor
+- `context-probe`: Simplified SKILL.md documentation (reduced from 250 to 73 lines) for improved clarity and maintainability.
+
 ## 1.6.1 - 2026-01-26
 
 ### Refactor
