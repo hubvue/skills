@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file.
 
+## 1.5.1 - 2026-01-26
+
+### Features
+- `prompt-minifier`: Added prompt-only output mode support. Users can now choose between `prompt_only` (minified prompt only) and `prompt_with_report` (minified prompt + compression report).
+
+### Documentation
+- Updated CLAUDE.md with consolidated plugin organization and code style guidelines.
+
 ## 1.5.0 - 2026-01-26
 
 ### Features
