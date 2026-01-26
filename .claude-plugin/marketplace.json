@@ -39,7 +39,8 @@
       "strict": false,
       "skills": [
         "./productivity/skills-workflow",
-        "./productivity/release-skills"
+        "./productivity/release-skills",
+        "./productivity/skills-workflow-builder"
       ]
     },
     {
