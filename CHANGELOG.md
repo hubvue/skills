@@ -2,6 +2,11 @@
 
 All notable changes to this project will be documented in this file.
 
+## 1.4.0 - 2026-01-26
+
+### Features
+- Renamed `skills-orchestrator` to `skills-workflow` for better clarity and naming consistency.
+
 ## 1.3.0 - 2026-01-26
 
 ### Features

@@ -154,7 +154,7 @@ Productivity tools for workflow optimization.
 
 #### Skills
 
-- **skills-orchestrator** - Interactive skills orchestrator for chaining multiple skills where the output of step i becomes the input of step i-1. Supports dry-run mode, trace logging, output validation, and safety guardrails. Enables execution of complex multi-step workflows with determinism and auditability.
+- **skills-workflow** - Interactive skills workflow for chaining multiple skills where the output of step i becomes the input of step i-1. Supports dry-run mode, trace logging, output validation, and safety guardrails. Enables execution of complex multi-step workflows with determinism and auditability.
 
   **When to invoke:** When you need to (1) Chain multiple skills together in a specific order, (2) Pass outputs between skills as inputs, (3) Execute complex multi-step workflows with traceability, (4) Run skills in dry-run mode before execution, (5) Debug or audit multi-skill workflows.
 
