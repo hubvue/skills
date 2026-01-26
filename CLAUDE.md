@@ -2,6 +2,10 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
+## Note: AGENTS.md Has Higher Priority
+
+This repository contains `AGENTS.md` at the root level, which serves as the highest-priority agent kernel rules file. AGENTS.md contains more detailed code style guidelines and patterns. When AGENTS.md is present, it takes precedence over CLAUDE.md for agent behavior.
+
 ## Repository Purpose
 
 This is a **Claude Code Skills Repository**. Skills are reusable capabilities that extend Claude Code's functionality. Skills are invoked via `/skill-name` commands by users.
@@ -180,3 +184,7 @@ Context engineering skills for prompt optimization and management.
 - prompt-minifier: Minifies verbose prompts
 - prompt-interviewer: Prompt refinement interviewer
 - context-probe: Implicit system-level skill that monitors context integrity, system prompt survival, and instruction drift. Always operates implicitly without user invocation. Warns when context is degraded or lost.
+
+**Context-probe Installation:**
+- Installs managed block at highest priority layer: AGENTS.md (if present) > .cursor/rules/context-probe > CLAUDE.md
+- Use `/context-probe` to install/update, `/context-probe status` to check installation, `/context-probe verbose on/off` for telemetry control

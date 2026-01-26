@@ -21,7 +21,7 @@ skills/
 ├── context-engineering/
 │   ├── prompt-minifier/           # Minify verbose prompts
 │   ├── prompt-interviewer/        # Prompt refinement interviewer
-│   └── context-probe/             # Implicit system-level context monitor
+│   └── context-probe/             # Implicit system-level context integrity guardrail (installs managed block)
 └── .claude-plugin/marketplace.json  # Plugin distribution config
 ```
 
@@ -196,3 +196,23 @@ Each skill has a `test-project/` directory for testing. Skills test against real
 - Node.js >= 20.0.0 required
 - Skills are distributed via marketplace.json, not npm
 - Scripts are executable (chmod +x) when used as CLI tools
+
+## Context-Probe Installation
+
+This AGENTS.md file serves as the highest-priority layer for context-probe rules. The context-probe skill monitors context integrity and installs a managed block at the highest available layer.
+
+**Installation Priority:**
+1. AGENTS.md (highest - this file takes precedence)
+2. .cursor/rules/context-probe or .cursor/rules/context-probe.md
+3. CLAUDE.md
+
+**Context-Probe Commands:**
+- `/context-probe` - Install or update Context Probe rules (idempotent)
+- `/context-probe status` - Report installation status, version, location, and tampering detection
+- `/context-probe off` - Uninstall Context Probe rules
+- `/context-probe verbose on/off` - Enable/disable verbose telemetry footer
+- `/context-probe repair` - Provide remediation guidance if degraded/lost is detected
+- `/context-probe help` - Print brief usage instructions
+
+**Managed Block Format:**
+Context Probe installs a delimited block using `<!-- CONTEXT_PROBE:BEGIN v1 -->` and `<!-- CONTEXT_PROBE:END -->` markers. Do NOT manually edit content inside these blocks.
