@@ -17,8 +17,9 @@ The repository is configured for distribution via Claude Code marketplace throug
   "name": "kim-skills",
   "plugins": [
     { "name": "fe-analysis", "skills": ["./fe-analysis/architecture-analysis", ...] },
-    { "name": "project", "skills": ["./project/resume-project-analyzer"] },
-    { "name": "productivity", "skills": ["./productivity/prompt-interviewer"] }
+    { "name": "project", "skills": ["./project/api-generator", ...] },
+    { "name": "productivity", "skills": ["./productivity/skills-workflow", ...] },
+    { "name": "context-engineering", "skills": ["./context-engineering/prompt-minifier", ...] }
   ]
 }
 ```
@@ -47,11 +48,101 @@ Each skill lives in its own directory:
 **package.json** (optional) is used when the skill includes executable Node.js scripts:
 - `bin` entries define CLI commands
 - `scripts.test` runs the skill on a test project
-- `engines.node` specifies minimum Node version (typically `>=14.0.0`, main repo requires `>=20.0.0`)
+- `engines.node` specifies minimum Node version (typically `>=14.0.0`)
 
 **scripts/** directory contains executable Node.js utilities referenced in SKILL.md examples.
 
 **references/** directory contains supporting documentation like frameworks, patterns, templates.
+
+## Code Style Guidelines (for skills with scripts)
+
+### JavaScript Conventions
+- Use CommonJS: `const fs = require('fs').promises`
+- Destructure from child_process: `const { spawn } = require('child_process')`
+- Group imports: std lib → external deps → local modules
+- Pure JavaScript (no TypeScript in skill implementation)
+- JSDoc comments: `/** Multi-line */` for documentation
+- Shebang on CLI scripts: `#!/usr/bin/env node`
+
+### Naming
+- Classes: `PascalCase` (e.g., `ProjectAnalyzer`, `FrameworkDetector`)
+- Functions/methods: `camelCase` (e.g., `analyze()`, `detectFrameworks()`)
+- Files: `kebab-case.js` (e.g., `analyze-project.js`, `framework-detector.js`)
+- Directories: `kebab-case` (e.g., `scripts/`, `detectors/`, `analyzers/`)
+- Constants: `UPPER_SNAKE_CASE` (rare, used for configs)
+
+### Formatting
+- Indentation: 4 spaces (no tabs)
+- Quotes: Single quotes for strings
+- Semicolons: Present and consistent
+- Block statements: `catch { }` (no space before closing brace)
+
+### Error Handling
+- Wrap file operations in try-catch
+- Graceful degradation: return null on failure
+- Result objects: `{ success: boolean, data?: any, error?: string }`
+- CLI errors: `console.error('message')` then `process.exit(1)`
+
+### Module Patterns
+```javascript
+// CLI entry point pattern
+if (require.main === module) {
+  const args = process.argv.slice(2);
+  // Parse args and execute
+}
+
+// Class-based analyzers
+class ProjectAnalyzer {
+  constructor(projectPath, options = {}) {
+    this.projectPath = path.resolve(projectPath);
+    this.options = options;
+  }
+
+  async analyze() {
+    // Implementation
+  }
+}
+module.exports = ProjectAnalyzer;
+```
+
+### Path Resolution
+Always resolve to absolute paths:
+```javascript
+const path = require('path');
+const resolvedPath = path.resolve(projectPath, 'relative/path');
+```
+
+## Common Commands
+
+### Architecture Analysis
+```bash
+cd fe-analysis/architecture-analysis
+npm test                    # Run on test-project
+node scripts/analyze-project.js /path/to/project  # Analyze any project
+```
+
+### Dependency Analysis
+```bash
+cd fe-analysis/dependency-analysis
+npm install                 # Install dependencies (acorn, acorn-walk, semver)
+npm test                    # Run on test-project
+npm run analyze             # Analyze current directory
+```
+
+### Unit Test Generator
+```bash
+cd fe-analysis/unit-test-generator
+npm test                    # Detect framework in test-project
+node scripts/generate-test.js src/components/Button.js  # Generate test for file
+```
+
+### Release Process
+Use `/release-skills` command to:
+- Analyze changes since last tag
+- Update CHANGELOG (EN/CN)
+- Update README if needed
+- Bump marketplace.json version
+- Commit and create version tag
 
 ## Creating a New Skill
 
@@ -62,89 +153,29 @@ Each skill lives in its own directory:
 5. Update `.claude-plugin/marketplace.json` with the new skill path
 6. Test by running the skill via the `/skill-name` command
 
-## Current Skills
+## Plugin Organization
 
-### fe-analysis/architecture-analysis
+The repository is organized into 4 plugins:
 
-Analyzes frontend project architecture: technology stacks, build tools, architectural patterns, TypeScript coverage, linters.
+### fe-analysis
+Frontend project analysis tools for understanding architecture, dependencies, and testing.
+- architecture-analysis: Comprehensive frontend architecture analyzer
+- dependency-analysis: Enhanced dependency analyzer with security scanning
+- unit-test-generator: Intelligent unit test generator
 
-**When to invoke:** When you need to quickly understand a project's structure, dependencies, and technical configuration. Detects Vue/React/Angular frameworks, Node.js environments, package managers, TypeScript usage, and provides multiple output formats (JSON, markdown, executive summary, scorecard).
+### project
+Project-related skills for documentation and analysis.
+- api-generator: Autonomous frontend API code generation
+- prd-gatekeeper: Engineering PRD gatekeeper
+- resume-project-analyzer: Resume project experience extractor
 
-**Commands:**
-```bash
-cd fe-analysis/architecture-analysis
-npm test                    # Run on test project
-node scripts/analyze-project.js /path/to/project  # Analyze any project
-```
+### productivity
+Productivity tools for workflow optimization.
+- skills-workflow: Interactive skills workflow orchestrator
+- release-skills: Automated release workflow
+- skills-workflow-builder: Creates dedicated workflow skills
 
-### fe-analysis/dependency-analysis
-
-Optimizes frontend project dependencies with security scanning, unused package detection, phantom dependency identification, circular dependency detection, and cleanup script generation.
-
-**When to invoke:** When you need to optimize dependencies, detect vulnerabilities, identify unused packages, find duplicate functionality, analyze dependency impact, generate cleanup scripts, or produce detailed Markdown reports.
-
-**Commands:**
-```bash
-cd fe-analysis/dependency-analysis
-npm install                 # Install dependencies (acorn, acorn-walk, semver)
-npm test                    # Run on test project
-npm run analyze             # Analyze current directory
-
-# Full analysis with all features
-node scripts/enhanced-analyzer.js /path/to/project \
-  --generateFixScript --generateGraph --checkSecurity --checkOutdated
-
-# Parallel processing for large projects
-node scripts/enhanced-analyzer.js /path/to/project --parallel --incremental
-```
-
-### fe-analysis/unit-test-generator
-
-Generates comprehensive tests for functions, components, and modules by detecting existing test frameworks and maintaining framework consistency.
-
-**When to invoke:** When you need to (1) Add unit tests to existing codebases, (2) Set up testing infrastructure for new projects, (3) Generate test cases for specific functions or components, (4) Ensure architectural consistency in testing approach across projects. Supports Jest, Vitest, Mocha with React, Vue, Angular frameworks.
-
-**Commands:**
-```bash
-cd fe-analysis/unit-test-generator
-npm test                    # Detect framework in test project
-
-# Generate test for specific file
-node scripts/generate-test.js src/components/Button.js
-
-# Setup testing configuration for new project
-node scripts/setup-test-config.js vitest '{"vue": true}'
-```
-
-### project/resume-project-analyzer
-
-Transforms codebases into authentic, interview-defensible resume project experience through a 5-step workflow.
-
-**When to invoke:** When analyzing a codebase for extracting resume-ready project descriptions, preparing for technical interview questions, understanding engineering depth, or identifying defensible technical achievements.
-
-**Key workflow (5 steps):**
-1. Project Analysis - Understand codebase structure, tech stack, architecture, complexity
-2. Engineering Value Extraction - Identify core problems solved, visible constraints, engineering decisions
-3. Confidence Classification - Classify each claim as HIGH/MEDIUM/LOW (requires user input for MEDIUM/LOW)
-4. Reflective Questioning - Ask targeted questions before finalizing resume content
-5. Resume & Interview Output - Generate structured output using templates
-
-**Critical principle:** Never finalize MEDIUM or LOW confidence claims without user clarification. The skill prioritizes correctness and interview credibility over exaggeration.
-
-**Output structure:** Fixed format including Project Summary, Resume-Ready Project Experience, Key Technical Highlights, Interview Defense Preparation, and Confidence Notes.
-
-### productivity/prompt-interviewer
-
-Refines and completes prompts through structured analysis and iterative questioning.
-
-**When to invoke:** When a user has an initial prompt but needs help refining it for better LLM performance: (1) When a prompt lacks clarity or context, (2) When constraints or boundaries are missing, (3) When output formats or quality criteria are undefined, (4) When there are ambiguities or conflicting requirements.
-
-**Key workflow (6 steps):**
-1. Prompt Analysis - Analyze goal clarity, context completeness, constraints, audience, I/O formats, quality criteria, edge cases
-2. Interview Mode - Ask targeted, high-impact questions about missing information (never assume or silently fill gaps)
-3. Iterative Loop - Re-analyze after each answer, continue interviewing until complete
-4. Completion Criteria - Finalize only when goal, role, inputs, outputs, constraints are unambiguous
-5. Run Gate - Present final prompt and ask "Do you want me to run this prompt now with the current LLM?"
-6. Final Output - If user says "Run", execute the prompt immediately using the current LLM
-
-**Critical principle:** The skill is an interviewer, not a prompt rewriter. Questions must be concrete, actionable, grouped by topic, and explain WHY each question matters.
+### context-engineering
+Context engineering skills for prompt optimization and management.
+- prompt-minifier: Minifies verbose prompts
+- prompt-interviewer: Prompt refinement interviewer
