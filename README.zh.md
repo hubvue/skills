@@ -179,6 +179,16 @@ npx skills add hubvue/skills
   6. 提交所有更改
   7. 创建版本标签
 
+- **skills-workflow-builder** - 通过嵌入固定管道（技能顺序 + 每步目标/模板/合同/停止条件）创建新的专用工作流技能。在运行时只要求 `initial_prompt`（必需），并可选择允许安全覆盖（execution_mode、verbosity、context_append）。
+
+  **何时调用：** 当您想要创建可重复使用的工作流技能而不需要每次都重新输入技能顺序/模板时。
+
+  **关键工作流程：**
+  1. 收集管道配置（new_skill_name、new_skill_description、技能顺序、可选的 baked_in_shared_context、默认值、override_policy）
+  2. 以 DRY_RUN 模式调用 skills-workflow 以规范化管道配置
+  3. 为 NEW_WORKFLOW_SKILL 生成完整的、可复制粘贴的技能定义
+  4. 使用 skill-creator 创建技能
+
 ## 技能结构
 
 ```

@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file.
 
+## 1.5.0 - 2026-01-26
+
+### Features
+- `skills-workflow-builder`: New skill for creating dedicated workflow skills by baking in a fixed pipeline (skill order + per-step goal/template/contract/stop). Reuses skills-workflow for normalization and skill-creator for materialization.
+
+### Documentation
+- Updated README with skills-workflow-builder documentation.
+
 ## 1.4.0 - 2026-01-26
 
 ### Features

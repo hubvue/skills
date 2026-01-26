@@ -179,6 +179,16 @@ Productivity tools for workflow optimization.
   6. Commit all changes
   7. Create version tag
 
+- **skills-workflow-builder** - Creates new dedicated workflow skills by baking in a fixed pipeline (skill order + per-step goal/template/contract/stop). At runtime only asks for `initial_prompt` (required) and optionally allows safe overrides (execution_mode, verbosity, context_append).
+
+  **When to invoke:** When you want to create a reusable workflow skill without re-entering skill order/templates each time.
+
+  **Key workflow:**
+  1. Collect pipeline config (new_skill_name, new_skill_description, skills order, optional baked_in_shared_context, defaults, override_policy)
+  2. Call skills-workflow in DRY_RUN mode to normalize pipeline config
+  3. Generate complete, copy-pasteable skill definition for NEW_WORKFLOW_SKILL
+  4. Create the skill using skill-creator
+
 ## Skill Structure
 
 ```
