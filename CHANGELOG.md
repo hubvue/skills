@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file.
 
+## 1.6.1 - 2026-01-26
+
+### Refactor
+- `context-probe`: Refactored skill from implicit monitor to installer + guardrail rules with slash-command UX. Added managed block format with v1 versioning, support for AGENTS/Cursor/Claude priority layers, and dedup/migration capabilities.
+
+### Documentation
+- Updated AGENTS.md with comprehensive context-probe installation commands and managed block documentation.
+- Updated CLAUDE.md with context-probe installation notes.
+
 ## 1.6.0 - 2026-01-26
 
 ### Features
