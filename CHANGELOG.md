@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file.
 
+## 1.3.0 - 2026-01-26
+
+### Features
+- `prompt-minifier`: New skill for minifying verbose prompts into semantically equivalent minimal prompts while preserving behavior. Supports lossless, balanced, and aggressive compression levels.
+- `context-engineering`: New plugin category for context engineering skills.
+- Reorganized `prompt-interviewer` from productivity to context-engineering plugin.
+
+### Documentation
+- Updated README with context-engineering category and prompt-minifier documentation.
+
 ## 1.2.0 - 2026-01-23
 
 ### Features

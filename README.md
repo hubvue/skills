@@ -115,11 +115,24 @@ Project-related skills for documentation and analysis.
 
   **When to invoke:** When reviewing PRDs to ensure they are production-ready and contain no implicit product decisions that would be pushed into implementation.
 
-### productivity
+### context-engineering
 
-Productivity tools for prompt engineering and workflow optimization.
+Context engineering skills for prompt optimization and management.
 
 #### Skills
+
+- **prompt-minifier** - Minify verbose prompts into semantically equivalent minimal prompts while preserving behavior. Transforms verbose or redundant prompts into minimal, high-density prompts with equivalent semantic and behavioral constraints.
+
+  **When to invoke:** When a user wants to: (1) Compress verbose prompts for token efficiency, (2) Optimize prompt structure while maintaining equivalent semantics, (3) Remove redundancy from existing prompts, (4) Convert natural language prompts to compact structured format.
+
+  **Key principles:**
+  - Preserve semantic intent and constraints
+  - Remove redundancy, filler, and implicit defaults
+  - Compress natural language into structured instructions when possible
+  - Maximize information density per token
+  - Avoid changing task scope or meaning
+
+  **Compression levels:** lossless (preserve full explicit meaning), balanced (remove redundancies, keep clarity), aggressive (maximum token reduction).
 
 - **prompt-interviewer** - Senior Prompt Engineer and Prompt Interviewer that interviews users to refine and complete their prompts through structured analysis and iterative questioning. The skill acts as an interviewer rather than a prompt rewriter, ensuring prompts are unambiguous and well-structured before execution.
 
@@ -134,6 +147,12 @@ Productivity tools for prompt engineering and workflow optimization.
   6. Final Output - If user says "Run", execute the prompt immediately using the current LLM
 
   **Critical principle:** The skill is an interviewer, not a prompt rewriter. Questions must be concrete, actionable, grouped by topic, and explain WHY each question matters.
+
+### productivity
+
+Productivity tools for workflow optimization.
+
+#### Skills
 
 - **skills-orchestrator** - Interactive skills orchestrator for chaining multiple skills where the output of step i becomes the input of step i-1. Supports dry-run mode, trace logging, output validation, and safety guardrails. Enables execution of complex multi-step workflows with determinism and auditability.
 
