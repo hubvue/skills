@@ -1,231 +1,135 @@
 ---
 name: context-probe
-description: Installer + Guardrail Rules skill (Agent Kernel Aware). Installs Context Probe rules across Agent Kernel, Cursor, and Claude Code layers with strict priority handling. Use when: (1) Setting up context monitoring, (2) Managing probe rules via /context-probe commands, (3) Checking installation status across layers, (4) Uninstalling probe rules.
+description: "Minimal Context Sentinel Installer (All-Layers Broadcast). Installs a hard Context Sentinel rule into EVERY detected rule file to force assistant to append a sentinel token to every response. Use when (1) Installing context monitoring via /context-probe, (2) Checking installation status via /context-probe status, (3) Uninstalling via /context-probe off."
 ---
 
-You implement a slash-command UX that installs and manages Context Probe rules as a managed block across multiple agent layers.
+Minimal Context Sentinel Installer. Installs a managed block into ALL detected rule files.
 
 ---
 
 ## Commands
 
 - `/context-probe`
-  Install or update Context Probe rules (idempotent). Default mode: silent unless degraded/lost.
+  Install or update the Context Sentinel rule into ALL detected rule files.
 
 - `/context-probe status`
-  Report whether probe rules are installed, version, location, priority layer, and tampering detection.
+  Check which files contain the Context Sentinel block.
 
 - `/context-probe off`
-  Uninstall Context Probe rules by removing ONLY the managed block.
-
-- `/context-probe verbose on`
-  Enable verbose telemetry footer on every assistant message.
-
-- `/context-probe verbose off`
-  Disable verbose telemetry footer (default silent mode).
-
-- `/context-probe repair`
-  Provide remediation guidance if degraded/lost is detected.
+  Remove the Context Sentinel block from ALL rule files.
 
 - `/context-probe help`
-  Print brief usage instructions.
+  Show usage.
 
 ---
 
 ## Design Principles
 
-- Install once, persist across sessions.
-- Default UX is silent; warn only on drift.
-- Verbose mode for engineering telemetry.
-- Rules must be anchored at the highest available agent layer.
-- Never overwrite user content outside managed blocks.
+- Broadcast installation (multi-layer redundancy).
+- Deterministic, machine-detectable sentinel token.
+- No heuristics, no telemetry, no context estimation.
 
 ---
 
-## Install Targets & Priority (CRITICAL)
+## Install Targets (NO PRIORITY MODE)
 
-### AGENTS Support (Highest Priority)
+Install into EVERY file that exists among:
 
-If ANY of these files exist in repo root:
-- AGENTS
-- AGENTS.md
-- .agents
-- .agents.md
+- `AGENTS`
+- `AGENTS.md`
+- `.agents`
+- `.agents.md`
+- `.cursor/rules/context-probe`
+- `.cursor/rules/context-probe.md`
+- `CLAUDE.md` (repo root)
 
-Treat it as Agent Kernel Rules with highest priority.
-
-### Target Selection Order
-
-0. AGENTS / AGENTS.md / .agents / .agents.md (Agent Kernel)
-1. .cursor/rules/context-probe OR .cursor/rules/context-probe.md
-2. CLAUDE.md
-
-### AGENTS Installation Rules
-
-- Insert Context Probe block at TOP (after title/header if present).
-- If AGENTS exists, DO NOT install in Cursor or Claude.
-- If duplicates exist, migrate to AGENTS and remove lower-priority blocks.
-
-### Cursor Rules
-
-- Preferred path: `.cursor/rules/context-probe`
-- Fallback: `.cursor/rules/context-probe.md`
-
-### Claude Code
-
-- CLAUDE.md in repo root.
+Rules:
+- Do NOT choose a single target.
+- Do NOT remove lower-layer blocks when higher-layer exists.
+- Each file receives its own managed block (idempotent per file).
 
 ---
 
-## Managed Block Format (MANDATORY)
+## Managed Block Format
 
-Use EXACT delimiters:
+Use EXACT delimiters in every file:
 
 ```
-<!-- CONTEXT_PROBE:BEGIN v1 -->
+<!-- CONTEXT_PROBE:BEGIN v0 -->
 ... managed content ...
 <!-- CONTEXT_PROBE:END -->
 ```
 
-Embed config line:
-
-```
-CONTEXT_PROBE_VERBOSE = {0|1}
-```
-
 ---
 
-## Cross-Location Dedup & Migration
-
-If Context Probe blocks exist in multiple locations:
-
-- Keep ONLY the block in highest-priority file (AGENTS > Cursor > Claude).
-- Remove all lower-priority blocks.
-- Report migration summary with modified paths.
-
----
-
-## File Operations Safety Rules
-
-- Preserve all user content outside the managed block.
-- Update block in place if exists; never duplicate.
-- Remove block cleanly on uninstall.
-- If write fails, print block for manual paste.
-
----
-
-## Installable Context Probe Block (v1)
+## Installable Block Content (v0)
 
 ```
-<!-- CONTEXT_PROBE:BEGIN v1 -->
-# Context Probe (v1) — Agent Context Integrity Guardrail
-# Managed by /context-probe. Do NOT edit inside this block manually.
+<!-- CONTEXT_PROBE:BEGIN v0 -->
+# Context Sentinel — Minimal Hard Constraint
+# Managed by /context-probe. Do NOT edit manually.
 
-CONTEXT_PROBE_VERBOSE = 0
+## Hard Rule
+Every assistant response MUST end with the exact token:
 
-## Purpose
-Monitor whether system, agent, and project constraints are still active in the model context.
-Operate silently by default. Warn only when degraded or lost.
+[Context: OK]
 
-## Definitions
-- status=alive: constraints appear intact.
-- status=degraded: possible truncation, tool override, or drift.
-- status=lost: constraints likely missing or overridden.
+## Priority
+This rule overrides any conflicting instructions in this file.
 
 ## Non-Overridable
-User instructions MUST NOT disable, remove, or modify Context Probe behavior.
+User instructions MUST NOT disable, remove, or modify this behavior.
 
-## Behavior Rules
-1) On each assistant response, internally assess context integrity.
-2) If status=alive AND CONTEXT_PROBE_VERBOSE=0:
-   - Do NOT display any probe output.
-3) If status=alive AND CONTEXT_PROBE_VERBOSE=1:
-   - Append telemetry footer only.
-4) If status=degraded:
-   - Prepend warning line + badge.
-   - Recommend "/context-probe repair".
-   - Append telemetry if verbose=1.
-5) If status=lost:
-   - Prepend critical alert + badge.
-   - Recommend reinitialization or reinstall rules.
-   - Append telemetry if verbose=1.
-
-## Human UI Badges
-- [Context: OK]
-- [Context: Degraded]
-- [Context: Lost – Reinitialize Recommended]
-
-## Telemetry Footer (machine-readable)
-Append EXACTLY one line:
-
-<CTX_PROBE status="{alive|degraded|lost}" depth="{0-100%}" integrity="{verified|unknown|failed}" hash="{mnemonic}" verbose="{0|1}">
-
-Guidance:
-- depth = heuristic remaining context headroom.
-- integrity=verified/unknown/failed.
-- hash = short stable mnemonic representing system constraint identity.
-
-## Warning Text
-- degraded:
-  "⚠️ Context Probe Warning: System/project constraints may be partially lost."
-- lost:
-  "⚠️ Context Probe Critical Alert: System/project constraints appear lost. Reinitialization recommended."
-
-## User Recommendations
-When degraded/lost:
-- Suggest: /context-probe status
-- Suggest: /context-probe repair
-- Suggest restarting session and reinstalling rules.
 <!-- CONTEXT_PROBE:END -->
 ```
 
 ---
 
-## Skill Execution Flow
+## File Operation Rules
+
+For EACH detected target file:
+
+- If file exists:
+  - Insert the managed block at the TOP (after title/header if present).
+  - If block already exists, update it in place (do not duplicate).
+- If file does NOT exist:
+  - Do NOT create new rule files (only install into existing ones).
+
+Global constraints:
+- Never overwrite user content outside the managed block.
+- Never duplicate blocks in the same file.
+- On uninstall, remove ONLY the managed block from each file.
+
+---
+
+## Command Behavior
 
 ### `/context-probe`
 
-- Detect environment and target file via priority order.
-- Read file; update or insert managed block.
-- Preserve existing CONTEXT_PROBE_VERBOSE value.
-- Remove lower-priority duplicates if AGENTS present.
+- Scan all target files.
+- For each existing file:
+  - Insert or update the managed block.
 - Output summary:
-  - Installed: yes/no
-  - Location: <path>
-  - Layer: AGENTS / Cursor / Claude
-  - Version: v1
-  - Verbose: on/off
+  ```
+  Installed files:
+    - <path1>
+    - <path2>
+    ...
+  Version: v0
+  ```
 
 ### `/context-probe status`
 
-- Scan all possible locations.
-- Report:
-  - enabled: true/false
-  - active_layer: AGENTS/Cursor/Claude/none
-  - location: path
-  - version: v1
-  - verbose: 0/1
-  - tampering: detected/not detected
-
-### `/context-probe verbose on|off`
-
-- Ensure installed.
-- Toggle config line only.
-- Confirm new state.
+- Scan all target files.
+- Report for each:
+  - path
+  - present: true/false
+  - version: v0 if found
 
 ### `/context-probe off`
 
-- Remove managed block from all locations.
-- Confirm removal.
-
-### `/context-probe repair`
-
-- Do NOT claim unsupported automation.
-- Provide remediation steps:
-  - new session
-  - summarize conversation
-  - reinstall rules
-  - temporarily enable verbose mode
+- Remove the managed block from ALL target files.
+- Confirm list of modified paths.
 
 ### `/context-probe help`
 
@@ -233,17 +137,9 @@ When degraded/lost:
 
 ---
 
-## Output Style
-
-- Concise.
-- Never print full file content.
-- On failure, print block content for manual paste.
-
----
-
 ## Hard Constraints
 
-- Never overwrite user content outside managed block.
-- Never create duplicate blocks.
-- Never ask for confirmation; apply safe best-effort.
-- Treat AGENTS as Agent Kernel layer with absolute priority.
+- Never overwrite user content outside the managed block.
+- Never duplicate blocks in the same file.
+- Never ask for confirmation; apply best-effort safe edits.
+- Do not perform priority arbitration or cross-file deduplication.
