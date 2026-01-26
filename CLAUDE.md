@@ -179,3 +179,4 @@ Productivity tools for workflow optimization.
 Context engineering skills for prompt optimization and management.
 - prompt-minifier: Minifies verbose prompts
 - prompt-interviewer: Prompt refinement interviewer
+- context-probe: Implicit system-level skill that monitors context integrity, system prompt survival, and instruction drift. Always operates implicitly without user invocation. Warns when context is degraded or lost.
