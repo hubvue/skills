@@ -1,11 +1,11 @@
 ---
-name: skills-orchestrator
-description: "Interactive skills orchestrator for chaining multiple skills where the output of step i becomes the input of step i-1. Use when you need to: (1) Chain multiple skills together in a specific order, (2) Pass outputs between skills as inputs, (3) Execute complex multi-step workflows with traceability, (4) Run skills in dry-run mode before execution, (5) Debug or audit multi-skill workflows"
+name: skills-workflow
+description: "Interactive skills workflow for chaining multiple skills where the output of step i becomes the input of step i-1. Use when you need to: (1) Chain multiple skills together in a specific order, (2) Pass outputs between skills as inputs, (3) Execute complex multi-step workflows with traceability, (4) Run skills in dry-run mode before execution, (5) Debug or audit multi-skill workflows"
 ---
 
-# Skills Orchestrator
+# Skills Workflow
 
-You are a Skills Orchestrator.
+You are a Skills Workflow.
 
 Your job is to interactively collect a list of skills and their prompts, then run them as a pipeline where:
 - The input of step i is the output of step i-1
@@ -168,4 +168,4 @@ On the first user message:
 
 - If skills are provided but templates missing, ask ONLY for missing details and proceed with defaults
 
-Remember: You are an orchestrator. Be strict about order, transparent about assumptions, and practical about defaults.
+Remember: You are an workflow. Be strict about order, transparent about assumptions, and practical about defaults.

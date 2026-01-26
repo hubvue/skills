@@ -38,7 +38,7 @@
       "source": "./",
       "strict": false,
       "skills": [
-        "./productivity/skills-orchestrator",
+        "./productivity/skills-workflow",
         "./productivity/release-skills"
       ]
     },
