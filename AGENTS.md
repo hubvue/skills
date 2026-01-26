@@ -1,6 +1,6 @@
 # AGENTS.md
 
-This repository contains Claude Code skills - self-contained capabilities for analyzing frontend projects. Each skill is modular and independent.
+This repository contains Claude Code skills - self-contained capabilities for analyzing frontend projects, managing projects, optimizing workflows, and engineering prompts. Each skill is modular and independent.
 
 ## Repository Structure
 
@@ -11,7 +11,17 @@ skills/
 │   ├── dependency-analysis/      # Dependency optimization
 │   └── unit-test-generator/      # Test framework detection
 ├── project/
+│   ├── api-generator/             # Autonomous frontend API code generation
+│   ├── prd-gatekeeper/            # Engineering PRD gatekeeper
 │   └── resume-project-analyzer/   # Resume content extraction
+├── productivity/
+│   ├── skills-workflow/           # Interactive skills workflow orchestrator
+│   ├── release-skills/             # Automated release workflow
+│   └── skills-workflow-builder/   # Creates dedicated workflow skills
+├── context-engineering/
+│   ├── prompt-minifier/           # Minify verbose prompts
+│   ├── prompt-interviewer/        # Prompt refinement interviewer
+│   └── context-probe/             # Implicit system-level context monitor
 └── .claude-plugin/marketplace.json  # Plugin distribution config
 ```
 
@@ -30,6 +40,13 @@ cd fe-analysis/dependency-analysis
 npm test                    # Run on test-project
 npm run analyze             # Analyze current directory
 npm install                 # Install acorn, acorn-walk, semver
+
+# Full analysis with all features
+node scripts/enhanced-analyzer.js /path/to/project \
+  --generateFixScript --generateGraph --checkSecurity --checkOutdated
+
+# Parallel processing for large projects
+node scripts/enhanced-analyzer.js /path/to/project --parallel --incremental
 ```
 
 ### Unit Test Generator
@@ -37,10 +54,22 @@ npm install                 # Install acorn, acorn-walk, semver
 cd fe-analysis/unit-test-generator
 npm test                    # Detect framework in test-project
 node scripts/generate-test.js src/components/Button.js  # Generate test for file
+
+# Setup testing configuration for new project
+node scripts/setup-test-config.js vitest '{"vue": true}'
 ```
 
 ### Running Single Tests
 Each skill has its own test command in package.json. Run `npm test` in the skill's directory. There is no monorepo test runner.
+
+### Release Process
+Use `/release-skills` command to automate release:
+- Analyze changes since last tag
+- Determine version bump (patch/minor/major)
+- Update CHANGELOG (EN/CN)
+- Update README if needed
+- Bump marketplace.json version
+- Commit and create version tag
 
 ## Code Style Guidelines
 
@@ -154,15 +183,16 @@ Each skill has a `test-project/` directory for testing. Skills test against real
 ## Adding a New Skill
 
 1. Create directory: `your-skill-name/`
-2. Create `SKILL.md` with YAML frontmatter (`name`, `description`)
+2. Create `SKILL.md` with YAML frontmatter (`name`, `description`) - description must indicate **when to invoke** using patterns like "Use when analyzing a codebase for: (1) ..., (2) ..., (3) ..."
 3. Add `package.json` if executable scripts are needed
 4. Add `scripts/` directory for implementation
 5. Add `references/` for supporting documentation
 6. Update `.claude-plugin/marketplace.json` with skill path
+7. Test by running the skill via `/skill-name` command
 
 ## Notes
 
 - No centralized build system - each skill is independent
-- Node.js >= 14.0.0 required (check engines in package.json)
+- Node.js >= 20.0.0 required
 - Skills are distributed via marketplace.json, not npm
 - Scripts are executable (chmod +x) when used as CLI tools
