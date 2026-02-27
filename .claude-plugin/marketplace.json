@@ -29,7 +29,8 @@
       "skills": [
         "./project/api-generator",
         "./project/prd-gatekeeper",
-        "./project/resume-project-analyzer"
+        "./project/resume-project-analyzer",
+        "./project/project-handover-generator"
       ]
     },
     {
