@@ -42,7 +42,7 @@
         "./productivity/skills-workflow",
         "./productivity/release-skills",
         "./productivity/skills-workflow-builder",
-        "./productivity/agent-dev-workflow"
+        "./productivity/dev-workflow"
       ]
     },
     {

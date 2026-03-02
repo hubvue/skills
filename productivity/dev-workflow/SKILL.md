@@ -1,5 +1,5 @@
 ---
-name: agent-dev-workflow
+name: dev-workflow
 description: Orchestrate document-driven AI agent development by task, with explicit phases, per-task artifacts, dependency healing, and incremental updates across iterative requirements.
 ---
 
