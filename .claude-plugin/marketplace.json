@@ -41,7 +41,8 @@
       "skills": [
         "./productivity/skills-workflow",
         "./productivity/release-skills",
-        "./productivity/skills-workflow-builder"
+        "./productivity/skills-workflow-builder",
+        "./productivity/agent-dev-workflow"
       ]
     },
     {
