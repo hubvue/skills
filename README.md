@@ -115,6 +115,17 @@ Project-related skills for documentation and analysis.
 
   **When to invoke:** When reviewing PRDs to ensure they are production-ready and contain no implicit product decisions that would be pushed into implementation.
 
+- **project-handover-generator** - Generates a practical project handover document from the current codebase and project artifacts. Grounds the handover in actual repository evidence and helps successors understand what the project is, how it runs, what is unfinished/risky, and what to pay attention to.
+
+  **When to invoke:** When preparing resignation or transition handover docs, summarizing project architecture and responsibilities, explaining deployment/configuration/risks/pending work for successors, or producing a structured, editable handover document.
+
+  **Key workflow (5 steps):**
+  1. Inspect the repository - Understand structure, frameworks, tooling, scripts, configs, docs, deployment clues, test setup
+  2. Build evidence-backed understanding - Form a grounded mental model of what the project does and what matters most
+  3. Identify uncertainty - Separate confirmed facts from high-confidence inferences and unknowns
+  4. Generate the handover document - Produce a structured markdown handover doc optimized for human takeover
+  5. Add final verification - Include items to confirm, high-risk areas, and first week recommendations
+
 ### context-engineering
 
 Context engineering skills for prompt optimization and management.
@@ -198,6 +209,25 @@ Productivity tools for workflow optimization.
   2. Call skills-workflow in DRY_RUN mode to normalize pipeline config
   3. Generate complete, copy-pasteable skill definition for NEW_WORKFLOW_SKILL
   4. Create the skill using skill-creator
+
+- **dev-workflow** - Orchestrate document-driven AI agent development by task, with explicit phases, per-task artifacts, dependency healing, and incremental updates across iterative requirements. Organizes work as a per-task, phase-gated workflow rather than unstructured chat.
+
+  **When to invoke:** When you need to structure AI-assisted development work with explicit phases (intake, research, plan, todo, implement, review), artifact-first outputs, dependency healing for jumping into later phases, and incremental updates to existing artifacts.
+
+  **Core principles:**
+  - Task isolation - Work is organized by task, keeping unrelated requirements separate
+  - Artifact first - Every phase must create or update durable artifacts
+  - Update, do not overwrite - Incrementally update existing artifacts rather than overwriting
+  - Dependency healing - Auto-generate minimum upstream artifacts when user starts from later phase
+  - Review-gated execution - Prefer research before planning and planning before broad implementation
+  - No silent scope expansion - Stay inside current task scope, record adjacent work as notes/risks
+
+  **Supported phases:** intake, research, plan, todo, implement, review
+
+  **Key workflow:**
+  1. Interpret user input - Determine task identification, requested phase, mode (create/update), and dependency healing needs
+  2. Execute requested phase(s) - Follow phase-specific rules from reference docs
+  3. Output workflow summary - Include task info, requested phases, dependency healing, artifacts created/updated, and next recommended phase
 
 ## Skill Structure
 

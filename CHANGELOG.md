@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## 1.7.0 - 2026-03-06
+
+### Features
+- `dev-workflow`: New skill for document-driven AI agent development by task, with explicit phases (intake, research, plan, todo, implement, review), per-task artifacts, dependency healing, and incremental updates.
+- `project-handover-generator`: New skill for generating practical project handover documents from codebase and artifacts, grounded in actual repository evidence.
+
 ## 1.6.2 - 2026-01-26
 
 ### Refactor
