@@ -222,7 +222,7 @@ npx skills add hubvue/skills
   - 审查门控执行 - 优先在广泛实现之前进行研究，在研究之前进行计划
   - 无静默范围扩展 - 保持在当前任务范围内，将相邻工作记录为注释/风险
 
-  **支持的阶段：** intake（需求收集）、research（研究）、plan（计划）、todo（任务清单）、implement（实现）、review（审查）
+  **支持的阶段：** intake（需求收集）、research（研究）、plan（计划）、todo（任务清单）、implement（实现）、test（测试）、bugfix（修复）、review（审查）
 
   **关键工作流程：**
   1. 解释用户输入 - 确定任务识别、请求阶段、模式（创建/更新）和依赖修复需求

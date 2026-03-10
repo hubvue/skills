@@ -222,7 +222,7 @@ Productivity tools for workflow optimization.
   - Review-gated execution - Prefer research before planning and planning before broad implementation
   - No silent scope expansion - Stay inside current task scope, record adjacent work as notes/risks
 
-  **Supported phases:** intake, research, plan, todo, implement, review
+  **Supported phases:** intake, research, plan, todo, implement, test, bugfix, review
 
   **Key workflow:**
   1. Interpret user input - Determine task identification, requested phase, mode (create/update), and dependency healing needs
