@@ -1,56 +1,53 @@
-# Phase: Implement
+# Phase: implement
 
-## Goal
+## Purpose
 
-Execute the plan through the todo list with minimal improvisation and clear logging.
+Execute the planned engineering work and perform engineering self-verification.
 
-## Must do
+## Inputs
 
-- implement according to `plan.md` and `todo.md`
-- update checkbox progress in `todo.md`
-- create or update `implementation-log.md`
-- record files changed
-- record completed work
-- record deviations from the plan
-- run relevant verification such as typecheck, tests, build, or lint where possible
-- report incomplete work honestly
+Read:
+- `task.md`
+- `plan.md`
+- `todo.md`
 
-## Must not do
+## Outputs
 
-- do not silently expand scope
-- do not make major design changes without documenting them
-- do not pretend verification happened if it did not
-- do not continue broad implementation if the plan is clearly invalid
-
-## Required outputs
-
-- updated `todo.md`
+Required:
 - `implementation-log.md`
+- update `status.json`
 
-## Recommended `implementation-log.md` sections
+Optional:
+- update `todo.md`
+- update `plan.md` if implementation reveals necessary design changes
 
-- Task ID
-- Title
-- Update Timestamp
-- Files Changed
-- Work Completed
-- Deviations
-- Verification Performed
-- Remaining Issues
-- Next Actions
+## Process
 
-## If the plan breaks during implementation
+1. Execute todo items in a sensible order.
+2. Record major implementation changes.
+3. Keep todo item statuses updated.
+4. Run relevant engineering self-checks where possible:
+   - lint
+   - typecheck
+   - unit test
+   - build
+   - smoke validation
+5. Record self-verification results in `implementation-log.md`.
+6. If implementation materially diverges from the original plan, update `plan.md`.
 
-If implementation reveals that the plan is wrong, incomplete, or unsafe:
-- document the issue in `implementation-log.md`
-- stop broad uncontrolled execution
-- recommend returning to `plan`
-- update the plan if explicitly requested or clearly necessary
+## Completion Criteria
 
-## Implementation quality bar
+Complete when:
+- the intended implementation is in place at a meaningful level
+- implementation changes are recorded
+- self-verification has been attempted/documented
+- the task is ready for formal test design/execution
 
-A good implementation phase should leave behind:
-- visible progress
-- visible verification
-- visible deviations
-- an obvious next step
+## Output Guidance
+
+Summarize:
+- what was implemented
+- major files/modules affected
+- self-verification outcome
+- plan changes if any
+- next phase: test

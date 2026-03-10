@@ -1,51 +1,45 @@
-# Phase: Intake
+# Phase: intake
 
-## Goal
+## Purpose
 
-Create or update the task record so the workflow has a stable home for the work.
+Convert a product request / PRD / idea into a clear requirement artifact for the task.
 
-## Must do
+## Inputs
 
-- create or update `task.md`
-- create or update `status.json`
-- capture the original request or latest task update
-- define the task title
-- define current scope
-- note non-goals when they are apparent
-- capture known constraints and dependencies
-- set or update current phase and status
+Possible inputs include:
+- PRD
+- user request
+- feature description
+- issue report
+- acceptance expectation
+- constraints from stakeholders
 
-## Must not do
+## Outputs
 
-- do not perform deep code analysis
-- do not pretend implementation details are already known
-- do not silently merge separate requirements into one task
-
-## Required outputs
-
+Required:
 - `task.md`
-- `status.json`
+- initialize `status.json`
 
-## Update mode
+## Process
 
-If `task.md` already exists:
-- preserve prior scope history
-- append changes rather than replacing history
-- mark new constraints clearly
-- update phase history
-- refresh `updated_at` or equivalent metadata
+1. Identify the task objective.
+2. Clarify scope and non-goals from available information.
+3. Extract or infer acceptance criteria.
+4. Capture constraints, dependencies, and assumptions.
+5. Create or update `task.md`.
+6. Initialize `status.json` with current phase state.
 
-If `status.json` already exists:
-- update current phase
-- update task status
-- update artifact availability
-- preserve continuity rather than resetting the task
+## Completion Criteria
 
-## Completion standard
+Complete when:
+- `task.md` exists
+- goal and scope are clear enough for engineering research to begin
+- acceptance criteria are captured at least at a practical level
 
-Intake is complete when the task has:
-- a stable identity
-- a clear title
-- a readable scope
-- visible constraints
-- an initialized status record
+## Output Guidance
+
+Summarize:
+- requirement goal
+- scope boundaries
+- acceptance targets
+- next phase: research

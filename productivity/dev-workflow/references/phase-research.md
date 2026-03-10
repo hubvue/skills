@@ -1,56 +1,42 @@
-# Phase: Research
+# Phase: research
 
-## Goal
+## Purpose
 
-Understand the current system and the task-relevant code before planning or broad implementation.
+Understand the project context, current implementation reality, impacted modules, and risks before designing the solution.
 
-## Must do
+## Inputs
 
-- inspect relevant code, configuration, and behavior
-- identify relevant files, modules, components, services, or flows
-- describe the current implementation state
-- identify constraints, risks, unknowns, and assumptions
-- capture research findings in `research.md`
+Read:
+- `task.md`
+- existing code/project context if available
+- adjacent artifacts from prior runs
 
-## Must not do
+## Outputs
 
-- do not implement the feature or fix as part of research
-- do not skip documenting uncertainties
-- do not claim strong conclusions without evidence
-- do not turn research into planning or coding without explicit phase progression
-
-## Required output
-
+Required:
 - `research.md`
+- update `status.json`
 
-## Recommended `research.md` sections
+## Process
 
-- Task ID
-- Title
-- Research Objective
-- Current Understanding
-- Relevant Files / Modules
-- Data Flow / Control Flow / UI Flow
-- Constraints Discovered
-- Risks
-- Unknowns / Open Questions
-- Recommendations for Planning
-- Change Log
+1. Read the requirement artifact.
+2. Inspect relevant modules, files, architecture, and current behavior.
+3. Identify impacted areas and constraints.
+4. Capture unknowns, assumptions, and technical risks.
+5. Produce `research.md`.
 
-## Update mode
+## Completion Criteria
 
-If `research.md` already exists:
-- preserve valid earlier findings
-- add new findings incrementally
-- mark invalidated assumptions explicitly
-- append a revision or changelog entry
-- avoid replacing the entire document unless explicitly requested
+Complete when:
+- current implementation context is sufficiently understood
+- impacted areas are identified
+- major unknowns and risks are documented
+- the task is ready for technical planning
 
-## Research quality bar
+## Output Guidance
 
-Good research should help a reviewer answer:
-- what exists now?
-- where are the relevant files?
-- what could break?
-- what is still unknown?
-- what should planning pay attention to?
+Summarize:
+- key findings
+- impacted modules
+- risks / unknowns
+- next phase: plan

@@ -1,71 +1,44 @@
-# Phase: Plan
+# Phase: plan
 
-## Goal
+## Purpose
 
-Turn research into a concrete, reviewable implementation strategy.
+Produce the technical solution that explains how the requirement should be implemented.
 
-## Must do
+## Inputs
 
-- base planning on `research.md` when available
-- if research is missing, perform lightweight explicit research first
-- create or update `plan.md`
-- describe intended approach and scope alignment
-- identify affected files/modules
-- explain implementation steps
-- describe risks, trade-offs, and validation strategy
-- leave the result reviewable by a human
+Read:
+- `task.md`
+- `research.md`
 
-## Must not do
+## Outputs
 
-- do not start broad implementation while in planning
-- do not hide assumptions
-- do not introduce major work outside the current task scope
-- do not treat planning as complete if open questions are still critical and unstated
-
-## Required output
-
+Required:
 - `plan.md`
+- update `status.json`
 
-## Dependency healing
+## Process
 
-If `research.md` is missing:
-- run lightweight explicit research first
-- create or update `research.md`
-- then continue planning
+1. Restate the engineering problem clearly.
+2. Propose the implementation approach.
+3. Explain design decisions and trade-offs.
+4. Identify impacted modules and interfaces.
+5. Define verification strategy.
+6. Define testing focus to help the later test phase.
+7. Record revision history if this is an update.
 
-Always state that dependency healing occurred.
+## Completion Criteria
 
-## Recommended `plan.md` sections
+Complete when:
+- a concrete implementation strategy exists
+- major design decisions are documented
+- impacted areas and risks are addressed
+- verification and testing focus are defined
 
-- Task ID
-- Title
-- Goal
-- Scope Confirmation
-- Research Summary
-- Proposed Approach
-- File / Module Impact
-- Step-by-Step Change Strategy
-- Trade-offs / Alternatives
-- Risks
-- Validation / Testing Strategy
-- Open Questions
-- Review / Annotation Notes
-- Revision History
+## Output Guidance
 
-## Update mode
-
-If `plan.md` already exists:
-- preserve earlier plan context where still valid
-- append a revision summary
-- identify what changed and why
-- keep earlier decisions unless invalidated
-- do not silently discard previous approved direction
-
-## Planning quality bar
-
-A good plan should help a reviewer answer:
-- what will change?
-- where will it change?
-- why this approach?
-- what are the main risks?
-- how will we validate the result?
+Summarize:
+- chosen solution
+- main trade-offs
+- impacted areas
+- test focus
+- next phase: todo

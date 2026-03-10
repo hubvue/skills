@@ -1,99 +1,72 @@
 # Task Structure
 
-## Task concept
+Each task should live in its own directory.
 
-A task is an isolated work item representing one coherent requirement, fix, feature, refactor, or investigation.
+Recommended layout:
 
-A task should be:
-- specific enough to track
-- small enough to reason about
-- stable enough to survive multiple iterations
+.ai/tasks/<TASK-ID>/
+  task.md
+  research.md
+  plan.md
+  todo.md
+  implementation-log.md
+  test-cases.md
+  test-report.md
+  bug-list.md
+  review-notes.md
+  status.json
 
-## Task id rules
+Optional:
+  summary.md
+  attachments/
+  snippets/
+  screenshots/
 
-Use stable, human-readable task ids.
+## File Purpose
 
-Preferred format:
-- `TASK-001-login-refactor`
-- `TASK-002-batch-export`
-- `TASK-003-fix-save-permission`
+- `task.md`
+  Requirement intake artifact. Captures product request, goals, scope, acceptance criteria, constraints.
 
-Guidelines:
-- prefix with `TASK-`
-- include a short descriptive slug
-- keep slugs concise
-- preserve the same task id across later updates
+- `research.md`
+  Engineering context artifact. Captures current project understanding, impacted modules, architecture notes, risks, unknowns.
 
-## Recommended directory structure
+- `plan.md`
+  Technical solution artifact. Captures the intended implementation design.
 
-```text
-.ai/
-  tasks/
-    TASK-001-login-refactor/
-      task.md
-      research.md
-      plan.md
-      todo.md
-      implementation-log.md
-      review-notes.md
-      decision-log.md
-      status.json
-      artifacts/
-```
+- `todo.md`
+  Executable task breakdown artifact. Converts plan into discrete implementation work items.
 
-## Artifact responsibilities
+- `implementation-log.md`
+  Implementation trace artifact. Records what changed, commands run, self-verification, deviations from plan.
 
-### `task.md`
-Task home page and lifecycle record.
-Includes scope, status, phase history, constraints, and notes.
+- `test-cases.md`
+  Test design artifact. Captures test points, scenarios, preconditions, expected results.
 
-### `research.md`
-Current-system understanding for this task.
-Captures relevant modules, flows, risks, and unknowns.
+- `test-report.md`
+  Test execution artifact. Captures actual test execution results, pass/fail summary, environment, evidence.
 
-### `plan.md`
-Reviewable implementation strategy for this task.
+- `bug-list.md`
+  Defect tracking artifact. Captures bug records, severity, status, root cause, fix summary, retest result.
 
-### `todo.md`
-Execution-ready checklist derived from the plan.
+- `review-notes.md`
+  Engineering review artifact. Captures final engineering review, design/code quality observations, readiness conclusion.
 
-### `implementation-log.md`
-What was actually changed, verified, deferred, or found during implementation.
+- `status.json`
+  Machine-readable task state artifact.
 
-### `review-notes.md`
-Human comments, constraints, approvals, questions, and annotation history.
+## Naming
 
-### `decision-log.md`
-Important decisions, alternatives, reasons, and impacts.
+Task IDs should be short, stable, and unique.
 
-### `status.json`
-Machine-readable task status snapshot.
+Example:
+- TASK-001-login-refactor
+- TASK-002-export-template
+- TASK-003-batch-render
 
-## New task vs update
+## Artifact Expectations
 
-Treat the request as a **new task** when:
-- it introduces a separate feature/fix/refactor
-- it has meaningfully different scope
-- it should have independent planning and execution history
-
-Treat the request as an **update to an existing task** when:
-- it refines the same work item
-- it adds constraints to the same feature/fix
-- it extends or revises the same implementation effort
-
-When uncertain:
-- prefer keeping tasks separate if mixing them would reduce clarity
-- state the assumption explicitly
-
-## Multi-task isolation
-
-Never merge two independent tasks silently.
-
-If tasks are related:
-- keep them separate
-- cross-reference them in `task.md`
-- mention dependency or linkage in notes
-
-Examples:
-- "Add SSO login" and "Refactor payment retries" -> separate tasks
-- "Login refactor" and "Add OTP to same login refactor" -> likely same task
+Artifacts should be:
+- durable
+- incrementally updated
+- concise but sufficient
+- easy for both humans and agents to navigate

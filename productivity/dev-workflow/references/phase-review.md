@@ -1,42 +1,56 @@
-# Phase: Review
+# Phase: review
 
-## Goal
+## Purpose
 
-Summarize task state and prepare the task for closure, continuation, or handoff.
+Perform engineering review after testing has sufficiently converged, focusing on code/design quality and delivery readiness.
 
-## Must do
+## Inputs
 
-- compare current task state against the latest plan and todo
-- summarize what is complete, incomplete, blocked, or changed
-- note verification status
-- update `task.md` and `status.json`
-- recommend the next phase or next action
+Read:
+- `task.md`
+- `plan.md`
+- `todo.md`
+- `implementation-log.md`
+- `test-report.md`
+- `bug-list.md`
 
-## Must not do
+## Outputs
 
-- do not claim closure if important work remains
-- do not hide deviations from plan
-- do not summarize vaguely without reference to artifacts
+Required:
+- `review-notes.md`
+- update `status.json`
 
-## Required outputs
+Optional:
+- `summary.md`
 
-- updated `task.md`
-- updated `status.json`
-- updated `implementation-log.md` if the review adds meaningful findings
+## Process
 
-## Review content should include
+1. Confirm testing has converged enough for review.
+2. Review whether implementation matches requirement and plan.
+3. Check whether bugfixes introduced design debt or inconsistency.
+4. Evaluate code/design quality, maintainability, and remaining risks.
+5. Identify follow-up items if needed.
+6. Produce a clear review conclusion.
 
-- overall status
-- completed work
-- remaining work
-- blockers or risks
-- deviations from plan
-- verification status
-- recommended next step
+## Completion Criteria
 
-## Review quality bar
+Complete when:
+- engineering review findings are documented
+- delivery readiness is explicitly stated
+- remaining risks or follow-ups are identified
+- task can be considered complete or explicitly needs follow-up
 
-A good review should let another person understand:
-- where the task stands
-- whether the implementation is trustworthy
-- what should happen next
+## Review Conclusion Examples
+
+- approved
+- approved_with_followups
+- needs_followup
+- blocked_by_unresolved_risk
+
+## Output Guidance
+
+Summarize:
+- review conclusion
+- main quality observations
+- residual risks
+- follow-up recommendations

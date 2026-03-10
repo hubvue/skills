@@ -1,91 +1,127 @@
 # Update Rules
 
-## Modes
+When updating an artifact:
 
-This workflow supports two primary modes:
+1. Preserve the existing intent unless the user explicitly changes requirements.
+2. Make changes incrementally.
+3. Add a short revision note when the update materially changes meaning.
+4. Mark invalidated sections as obsolete/superseded when useful.
+5. Keep downstream artifacts aligned:
+   - requirement changes may affect research/plan/todo/test-cases
+   - research changes may affect plan/todo/implement/test/review
+   - design changes may affect todo/implementation-log/test-cases/test-report
+   - bugfix changes may affect plan/todo/test-report/bug-list
 
-### Create mode
-Use when:
-- the task does not exist yet
-- the artifact does not exist yet
-- the user explicitly asks to create a new task
+## Phase-Targeted Update Semantics
 
-### Update mode
-Use when:
-- the task already exists
-- the user is refining, continuing, or revising existing work
-- the artifact already exists and should be extended
+### 1. No explicit phase specified
 
-## Default rule
+If the user gives new information without specifying a target phase:
+- apply it to the current next appropriate phase when possible
+- do not automatically revise all later phases
+- complete only the single next phase and then stop
+- ask whether to continue
 
-Default to **update mode** when an artifact already exists.
+### 2. Explicit phase specified
 
-Do not overwrite by default.
+If the user explicitly specifies a phase:
+- treat that phase as the target of the request
+- if the artifact does not yet exist, create or heal prerequisites and execute up to that phase
+- if the artifact already exists, treat the request as a revision of that phase
 
-## Rebuild rule
+### 3. Existing phase revision
 
-Only rebuild or replace an artifact when:
-- the user explicitly asks for a rebuild
-- the current artifact is clearly unusable and the reason is stated
-- preserving the old version separately is still possible
-
-If rebuilding:
-- say that you are rebuilding
-- preserve old context in a revision note when possible
-
-## Preserve history
-
-Preserve history for:
-- scope changes
-- revised assumptions
-- plan changes
-- completed todo state
-- implementation deviations
-- review outcomes
-
-History may be preserved via:
-- changelog entries
-- revision history sections
-- obsolete/revised markers
-- appended notes
-
-## Revision conventions
-
-Recommended conventions:
-
-- **Change Log** for research updates
-- **Revision History** for plan changes
-- **Revision Notes** for todo changes
-- **Deviations** for implementation divergence
-- **Phase History** for task lifecycle updates
-
-## Obsolete / revised handling
-
-When an earlier item is no longer valid:
-- do not silently delete it
-- mark it as obsolete, superseded, revised, or invalidated
-- explain why when helpful
+When revising an existing phase artifact:
+- preserve still-valid content
+- update only the impacted sections
+- append a revision note if meaning changes materially
+- avoid rewriting the entire artifact unless the prior content is mostly invalid
 
 Examples:
-- a todo item can be marked "obsolete after API contract change"
-- a plan section can be marked "superseded by revision 2"
-- a research assumption can be marked "invalidated by new requirement"
+- revise `plan.md` to add fallback strategy
+- revise `todo.md` to add telemetry tasks
+- revise `test-cases.md` to add regression coverage
 
-## Iterative requirement changes
+## Forward Reflow Rule
 
-When the same task changes over time:
-- update `task.md` scope and notes
-- update `research.md` findings and assumptions
-- update `plan.md` revision history
-- update `todo.md` while preserving valid completion state
-- update `implementation-log.md` with what changed this round
-- update `status.json` to reflect the current phase and next action
+If the task is already at a later phase and the user modifies an upstream phase, the workflow must reflow forward.
 
-## Anti-patterns to avoid
+Required behavior:
+1. update the specified upstream artifact
+2. identify all downstream artifacts affected by the change
+3. revise or re-execute downstream artifacts sequentially
+4. stop after reaching the original current phase unless the user asks for a different target
 
-Avoid these behaviors:
-- full-document overwrite with no revision trail
-- deleting completed todo history
-- pretending a revised requirement was always the original requirement
-- implementing based on stale plan without noting the mismatch
-- merging unrelated tasks because they appear nearby in conversation
+This prevents stale downstream artifacts.
+
+Examples:
+- current phase is `test`, user modifies `plan`
+  -> update `plan.md`
+  -> update `todo.md`
+  -> update `implementation-log.md` if implementation assumptions changed
+  -> update `test-cases.md` / `test-report.md` / `bug-list.md` as needed
+  -> stop at `test`
+
+- current phase is `review`, user modifies `research`
+  -> update `research.md`
+  -> propagate through `plan`, `todo`, `implement`, `test`, and `review`
+
+## Current Phase Preservation Rule
+
+When handling upstream revisions for an already-progressed task:
+- preserve the current highest meaningful phase as the reflow target
+- do not stop at the revised upstream phase unless the user explicitly asks to stop there
+
+Examples:
+- current phase `test` + plan feedback -> reflow to `test`
+- current phase `review` + todo feedback -> reflow to `review`
+
+## Dependency Healing Rule
+
+If a requested phase depends on missing, stale, or insufficient prerequisite artifacts:
+- reconstruct or refresh the prerequisites first
+- then continue to the target phase
+
+Do not skip required upstream reasoning merely because the user requested a later phase.
+
+## Bugfix-triggered design sync
+
+When fixing a bug, update `plan.md` if the fix changes any of the following:
+- technical approach
+- interface contract
+- state machine / flow
+- data model / payload shape
+- fallback / error handling path
+- boundary assumptions
+- risk handling strategy
+
+If the plan is updated due to a bugfix:
+- add a revision entry in `plan.md`
+- update impacted todo items if necessary
+- mention the design-sync in `implementation-log.md` or the corresponding bug record
+
+## Requirement Changes
+
+If the user changes the product requirement mid-task:
+- update `task.md`
+- re-evaluate `research.md`
+- revise `plan.md`
+- revise `todo.md`
+- revise implementation/test/review artifacts as needed to restore consistency with the new requirement
+
+## Retest Rule
+
+Never mark a bug closed immediately after code changes.
+Use a progression such as:
+- open
+- in_progress
+- fixed_pending_retest
+- closed
+
+## Agent Team Update Rule
+
+If agent team mode is enabled:
+- sub agents may draft updates for individual phases
+- only the main agent may finalize artifact updates and status transitions
+- if multiple sub agent outputs conflict, the main agent must reconcile them before updating artifacts
+- artifact consistency across phases takes priority over speed of delegation

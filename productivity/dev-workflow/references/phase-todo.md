@@ -1,59 +1,39 @@
-# Phase: Todo
+# Phase: todo
 
-## Goal
+## Purpose
 
-Convert the plan into an execution-ready checklist.
+Translate the technical plan into an executable engineering task breakdown.
 
-## Must do
+## Inputs
 
-- derive checklist items from `plan.md`
-- group work into logical phases or workstreams
-- preserve ordering when dependencies matter
-- note blockers or prerequisites when relevant
-- create or update `todo.md`
+Read:
+- `plan.md`
 
-## Must not do
+## Outputs
 
-- do not introduce major new scope that is absent from the plan
-- do not discard already completed items without explanation
-- do not create vague checklist items that cannot guide implementation
-
-## Required output
-
+Required:
 - `todo.md`
+- update `status.json`
 
-## Recommended `todo.md` structure
+## Process
 
-- Task ID
-- Title
-- Execution Groups / Phases
-- Checkbox Items
-- Optional Blockers / Dependencies
-- Revision Notes
+1. Break the plan into discrete implementation items.
+2. Map each item to modules/files/areas where possible.
+3. Add verification expectations to work items where useful.
+4. Reflect ordering or dependencies between items.
+5. Mark initial statuses.
 
-Example shape:
+## Completion Criteria
 
-```md
-# Todo
+Complete when:
+- the plan is decomposed into actionable work items
+- execution order is understandable
+- implementation can begin with minimal ambiguity
 
-## Phase 1 - API alignment
-- [ ] Review current contract
-- [ ] Update request payload mapping
-- [ ] Normalize response shape
+## Output Guidance
 
-## Phase 2 - UI updates
-- [ ] Update form validation
-- [ ] Add loading and error states
-```
-
-## Update mode
-
-If `todo.md` already exists:
-- keep completed items that remain valid
-- mark invalidated items as revised or obsolete instead of silently deleting them
-- add new items for new plan changes
-- preserve a readable revision trail
-
-## Todo quality bar
-
-A good todo list should make implementation feel mechanical rather than improvised.
+Summarize:
+- number of work items
+- critical path
+- major dependencies
+- next phase: implement
