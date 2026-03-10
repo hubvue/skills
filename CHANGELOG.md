@@ -2,6 +2,11 @@
 
 All notable changes to this project will be documented in this file.
 
+## 1.7.1 - 2026-03-10
+
+### Features
+- `dev-workflow`: Added test and bugfix phases to the workflow for complete development lifecycle coverage. Added artifact rules documentation and status schema for better structure validation.
+
 ## 1.7.0 - 2026-03-06
 
 ### Features
