@@ -2,6 +2,11 @@
 
 All notable changes to this project will be documented in this file.
 
+## 1.8.1 - 2026-03-16
+
+### Documentation
+- `deep-learning`: Minor refinement to skill documentation.
+
 ## 1.8.0 - 2026-03-16
 
 ### Features
