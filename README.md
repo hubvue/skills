@@ -210,6 +210,22 @@ Productivity tools for workflow optimization.
   3. Generate complete, copy-pasteable skill definition for NEW_WORKFLOW_SKILL
   4. Create the skill using skill-creator
 
+- **deep-learning** - Systematically learn and explain the principles of a library, framework, module, function, or code path. Helps build correct mental models with layered explanations from problem and role to design tradeoffs and next steps. Supports project, module, and function modes with comprehensive workflow guidance.
+
+  **When to invoke:** When a user wants to understand overall architecture, module responsibilities, execution flow, call chains, core data structures, design tradeoffs, implementation details, or interview-ready explanations from source code.
+
+  **Core modes:**
+  - Project mode - For whole frameworks/projects
+  - Module mode - For packages/subsystems/directories
+  - Function mode - For functions/methods/hooks/classes or narrow call paths
+
+  **Key workflow:**
+  1. Determine target and scope
+  2. Select appropriate mode
+  3. Explain in layers (problem, structure, main flow, implementation details, tradeoffs)
+  4. Ground explanations in provided code/context
+  5. End with takeaways and next reading
+
 - **dev-workflow** - Orchestrate document-driven AI agent development by task, with explicit phases, per-task artifacts, dependency healing, and incremental updates across iterative requirements. Organizes work as a per-task, phase-gated workflow rather than unstructured chat.
 
   **When to invoke:** When you need to structure AI-assisted development work with explicit phases (intake, research, plan, todo, implement, review), artifact-first outputs, dependency healing for jumping into later phases, and incremental updates to existing artifacts.

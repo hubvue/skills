@@ -2,10 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
-## 1.7.2 - 2026-03-16
+## 1.8.0 - 2026-03-16
 
 ### Features
-- `dev-workflow`: Added tasks directory for better workflow organization.
+- `deep-learning`: New skill for systematically learning and explaining library, framework, module, function, or code path principles. Helps build correct mental models with layered explanations from problem and role to design tradeoffs and next steps. Supports project, module, and function modes with comprehensive workflow guidance.
+
+### Other
+- Upgraded gitignore with additional patterns.
 
 ## 1.7.1 - 2026-03-10
 
