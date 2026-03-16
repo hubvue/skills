@@ -2,6 +2,11 @@
 
 All notable changes to this project will be documented in this file.
 
+## 1.7.2 - 2026-03-16
+
+### Features
+- `dev-workflow`: Added tasks directory for better workflow organization.
+
 ## 1.7.1 - 2026-03-10
 
 ### Features
