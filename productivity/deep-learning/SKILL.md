@@ -1,5 +1,5 @@
 ---
-name: deep learning
+name: deep-learning
 description: Systematically learn and explain the principles of a library, framework, module, function, or code path. Use when a user wants to understand overall architecture, module responsibilities, execution flow, call chains, core data structures, design tradeoffs, implementation details, or interview-ready explanations from source code.
 ---
 
