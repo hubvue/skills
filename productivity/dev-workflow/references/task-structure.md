@@ -4,7 +4,7 @@ Each task should live in its own directory.
 
 Recommended layout:
 
-.ai/tasks/<TASK-ID>/
+/<PROJECT-WORKSPACE>/.ai/tasks/<TASK-ID>/
   task.md
   research.md
   plan.md
