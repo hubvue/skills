@@ -226,7 +226,7 @@ Productivity tools for workflow optimization.
   4. Ground explanations in provided code/context
   5. End with takeaways and next reading
 
-- **dev-workflow** - Orchestrate document-driven AI agent development by task, with explicit phases, per-task artifacts, dependency healing, and incremental updates across iterative requirements. Organizes work as a per-task, phase-gated workflow rather than unstructured chat.
+- **dev-spec** - Orchestrate spec-driven AI agent development by task, with explicit phases, per-task artifacts, dependency healing, and incremental updates across iterative requirements. Organizes work as a per-task, phase-gated workflow rather than unstructured chat.
 
   **When to invoke:** When you need to structure AI-assisted development work with explicit phases (intake, research, plan, todo, implement, review), artifact-first outputs, dependency healing for jumping into later phases, and incremental updates to existing artifacts.
 

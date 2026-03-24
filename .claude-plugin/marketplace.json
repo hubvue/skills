@@ -42,7 +42,7 @@
         "./productivity/skills-workflow",
         "./productivity/release-skills",
         "./productivity/skills-workflow-builder",
-        "./productivity/dev-workflow",
+        "./productivity/dev-spec",
         "./productivity/deep-learning"
       ]
     },
