@@ -30,7 +30,8 @@
         "./project/api-generator",
         "./project/prd-gatekeeper",
         "./project/resume-project-analyzer",
-        "./project/project-handover-generator"
+        "./project/project-handover-generator",
+        "./project/doc-generator"
       ]
     },
     {
