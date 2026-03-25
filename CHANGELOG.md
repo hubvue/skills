@@ -2,6 +2,11 @@
 
 All notable changes to this project will be documented in this file.
 
+## 1.9.0 - 2026-03-25
+
+### Features
+- `doc-generator`: New skill for generating, updating, or improving usage documentation for projects, files, components, SDKs, modules, or functions based on source code. Supports project-level, file-level, and symbol-level targets. Produces usage-oriented documentation including when/how to use, constraints, and common pitfalls.
+
 ## 1.8.2 - 2026-03-24
 
 ### Refactor

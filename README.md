@@ -117,6 +117,8 @@ Project-related skills for documentation and analysis.
 
 - **project-handover-generator** - Generates a practical project handover document from the current codebase and project artifacts. Grounds the handover in actual repository evidence and helps successors understand what the project is, how it runs, what is unfinished/risky, and what to pay attention to.
 
+- **doc-generator** - Generates, updates, or improves usage documentation for projects, files, components, SDKs, modules, or functions based on source code. Supports project-level (entire repository), file-level (single file/module), and symbol-level (function/class/component) targets. Produces usage-oriented documentation including when/how to use, constraints, and common pitfalls.
+
   **When to invoke:** When preparing resignation or transition handover docs, summarizing project architecture and responsibilities, explaining deployment/configuration/risks/pending work for successors, or producing a structured, editable handover document.
 
   **Key workflow (5 steps):**
