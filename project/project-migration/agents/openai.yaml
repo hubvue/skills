@@ -1,0 +1,4 @@
+interface:
+  display_name: "Project Migration"
+  short_description: "Plan and execute safe repository migrations"
+  default_prompt: "Use $project-migration to assess this old-to-new repository migration and produce the next-phase artifacts."
