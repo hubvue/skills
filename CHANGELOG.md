@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file.
 
+## 1.10.0 - 2026-03-26
+
+### Features
+- `project-migration`: New skill for phase-gated repository and engineering migration work. Supports intake, audit, map, diff, plan, pilot, execute, verify, and cleanup with reusable migration templates, checklists, and risk guidance.
+
+### Documentation
+- Updated `README.md` and `README.zh.md` to add `project-migration` and fix project-skill descriptions so `project-handover-generator` and `doc-generator` are documented correctly.
+
 ## 1.9.0 - 2026-03-25
 
 ### Features

@@ -2,6 +2,14 @@
 
 本项目的所有重要更改都将记录在此文件中。
 
+## 1.10.0 - 2026-03-26
+
+### 功能特性
+- `project-migration`: 新增分阶段推进仓库迁移和工程迁移的技能。支持 intake、audit、map、diff、plan、pilot、execute、verify、cleanup，并提供可复用的迁移模板、检查清单和风险指引。
+
+### 文档
+- 更新 `README.md` 和 `README.zh.md`，补充 `project-migration`，并修正 project 分类下 `project-handover-generator` 与 `doc-generator` 的说明。
+
 ## 1.9.0 - 2026-03-25
 
 ### 功能特性

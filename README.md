@@ -117,8 +117,6 @@ Project-related skills for documentation and analysis.
 
 - **project-handover-generator** - Generates a practical project handover document from the current codebase and project artifacts. Grounds the handover in actual repository evidence and helps successors understand what the project is, how it runs, what is unfinished/risky, and what to pay attention to.
 
-- **doc-generator** - Generates, updates, or improves usage documentation for projects, files, components, SDKs, modules, or functions based on source code. Supports project-level (entire repository), file-level (single file/module), and symbol-level (function/class/component) targets. Produces usage-oriented documentation including when/how to use, constraints, and common pitfalls.
-
   **When to invoke:** When preparing resignation or transition handover docs, summarizing project architecture and responsibilities, explaining deployment/configuration/risks/pending work for successors, or producing a structured, editable handover document.
 
   **Key workflow (5 steps):**
@@ -127,6 +125,28 @@ Project-related skills for documentation and analysis.
   3. Identify uncertainty - Separate confirmed facts from high-confidence inferences and unknowns
   4. Generate the handover document - Produce a structured markdown handover doc optimized for human takeover
   5. Add final verification - Include items to confirm, high-risk areas, and first week recommendations
+
+- **doc-generator** - Generates, updates, or improves usage documentation for projects, files, components, SDKs, modules, or functions based on source code. Supports project-level (entire repository), file-level (single file/module), and symbol-level (function/class/component) targets. Produces usage-oriented documentation including when/how to use, constraints, and common pitfalls.
+
+  **When to invoke:** When generating, updating, or improving source-code-grounded usage documentation for a project, file, component, SDK, module, or function.
+
+  **Key workflow (5 steps):**
+  1. Determine documentation target and scope
+  2. Inspect relevant code and supporting project context
+  3. Infer intended usage, constraints, and integration points from source
+  4. Generate structured, usage-oriented documentation in Markdown
+  5. Call out assumptions, gaps, and validation points when evidence is incomplete
+
+- **project-migration** - Plans and drives safe old-to-new project or repository migrations with phase-based outputs, risk controls, and migration artifacts. Helps teams audit inherited projects, compare old and new repositories, define migration batches, choose pilot slices, manage compatibility layers, and verify rollout and rollback readiness.
+
+  **When to invoke:** When migrating an existing project to a new repository, stack, or engineering system, especially when the user needs audit outputs, diff matrices, migration plans, pilot scopes, execution logs, or verification checklists.
+
+  **Key workflow:** Follow a phase-gated migration path:
+  1. Intake - Clarify scope, constraints, success criteria, and migration strategy
+  2. Audit and map - Understand the old project, core flows, hidden dependencies, and style assets
+  3. Diff and plan - Compare old/new repos, choose adapters, define batches and pilot scope
+  4. Execute and verify - Track migration progress, blockers, validation, release readiness, and rollback
+  5. Cleanup - Remove migration debt and define follow-up governance
 
 ### context-engineering
 
