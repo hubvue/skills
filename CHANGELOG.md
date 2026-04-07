@@ -2,6 +2,11 @@
 
 All notable changes to this project will be documented in this file.
 
+## 1.11.0 - 2026-04-08
+
+### Features
+- `doc-skill-creator`: New skill for converting existing documents into dedicated skill designs. Transforms static documentation such as component library docs, SDK docs, utility docs, FAQ, migration guides, standards docs, and examples into practical skill artifacts. Analyzes suitability, extracts capabilities, designs skill structure, and drafts SKILL.md and references.
+
 ## 1.10.0 - 2026-03-26
 
 ### Features

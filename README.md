@@ -267,6 +267,28 @@ Productivity tools for workflow optimization.
   2. Execute requested phase(s) - Follow phase-specific rules from reference docs
   3. Output workflow summary - Include task info, requested phases, dependency healing, artifacts created/updated, and next recommended phase
 
+- **doc-skill-creator** - Converts existing documents into a dedicated skill design, including analyzing suitability, extracting capabilities, designing skill structure, and drafting SKILL.md and references. Transforms static documentation such as component library docs, SDK docs, utility docs, FAQ, migration guides, standards docs, and examples into practical skill artifacts.
+
+  **When to invoke:** When converting documents into a dedicated skill, generating a skill from library, SDK, FAQ, migration, or standards documentation, designing a target skill from existing docs, creating SKILL.md and references from source documents, or transforming static docs into practical usage capabilities.
+
+  **Default workflow:**
+  1. Analyze the source material and scope
+  2. Judge suitability for skill conversion
+  3. Determine the target skill type
+  4. Extract capability units
+  5. Split knowledge into facts, rules, scenarios, examples, pitfalls, migration, and gaps when applicable
+  6. Design the target skill structure
+  7. Draft the target SKILL.md and references plan
+
+  **Working rules:**
+  - Convert documentation into capabilities, not just summaries
+  - Organize outputs around user tasks, not source headings
+  - Prefer practical guidance over passive description
+  - Clearly separate documented facts from derived guidance
+  - Do not invent unsupported APIs, features, or guarantees
+  - State missing information explicitly when the source material is incomplete
+  - Keep the target skill scoped and maintainable
+
 ## Skill Structure
 
 ```
