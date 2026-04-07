@@ -45,7 +45,8 @@
         "./productivity/release-skills",
         "./productivity/skills-workflow-builder",
         "./productivity/dev-spec",
-        "./productivity/deep-learning"
+        "./productivity/deep-learning",
+        "./productivity/doc-skill-creator"
       ]
     },
     {
