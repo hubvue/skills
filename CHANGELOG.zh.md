@@ -2,6 +2,14 @@
 
 本项目的所有重要更改都将记录在此文件中。
 
+## 1.12.0 - 2026-04-14
+
+### 功能特性
+- `code-evolver`: 新增 context-engineering 技能，将对话中反复出现的代码规范、工程约定、架构约束与协作规则沉淀为带 few-shot 的可维护项目规则。识别新增/更新/合并/冲突，过滤一次性指令，并按职责同步到 `.cursor/rules`、`AGENTS.md` 与 `CLAUDE.md`。
+
+### 文档
+- 更新 `README.md` 与 `README.zh.md`，补充 `code-evolver` 说明。
+
 ## 1.11.0 - 2026-04-08
 
 ### 功能特性

@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file.
 
+## 1.12.0 - 2026-04-14
+
+### Features
+- `code-evolver`: New context-engineering skill that turns recurring code standards, engineering conventions, architecture constraints, and collaboration rules from conversations into durable, maintainable project rules with few-shot examples. Detects add/update/merge/conflict cases, filters one-off instructions, and syncs responsibilities across `.cursor/rules`, `AGENTS.md`, and `CLAUDE.md`.
+
+### Documentation
+- Updated `README.md` and `README.zh.md` to document `code-evolver`.
+
 ## 1.11.0 - 2026-04-08
 
 ### Features

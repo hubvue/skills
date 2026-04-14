@@ -191,6 +191,12 @@ Context engineering skills for prompt optimization and management.
   - Warns user when context is degraded or lost
   - Self-healing behavior to restate critical constraints when degraded
 
+- **code-evolver** - Evolves durable project rules from ongoing conversations: code standards, engineering conventions, architecture constraints, naming, directory layout, testing expectations, collaboration norms, and AI workflow rules. Detects reusable rules, handles add/update/merge/conflict cases, filters one-off instructions, and syncs responsibilities across `.cursor/rules`, `AGENTS.md`, and `CLAUDE.md`, with few-shot examples per rule.
+
+  **When to invoke:** When the user asks to capture or update team rules from chat, persist conventions into rule files, or the conversation repeatedly surfaces stable constraints worth codifying.
+
+  **Key workflow:** Identify rule candidates → classify durable vs temporary → diff against existing rules → resolve merge/conflicts → write or update files with scoped few-shots aligned to each surface (Cursor rules vs AGENTS vs CLAUDE).
+
 ### productivity
 
 Productivity tools for workflow optimization.
