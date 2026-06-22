@@ -32,7 +32,8 @@
         "./project/resume-project-analyzer",
         "./project/project-handover-generator",
         "./project/doc-generator",
-        "./project/project-migration"
+        "./project/project-migration",
+        "./project/clean-code"
       ]
     },
     {
@@ -59,6 +60,27 @@
         "./context-engineering/prompt-interviewer",
         "./context-engineering/context-probe",
         "./context-engineering/code-evolver"
+      ]
+    },
+    {
+      "name": "idea-requirement",
+      "description": "idea requirement skills by claude plugin",
+      "source": "./",
+      "strict": false,
+      "skills": [
+        "./idea-requirement/idea-requirement",
+        "./idea-requirement/idea-intake",
+        "./idea-requirement/motivation-clarify",
+        "./idea-requirement/painpoint-validate",
+        "./idea-requirement/scenario-restore",
+        "./idea-requirement/user-identify",
+        "./idea-requirement/goal-define",
+        "./idea-requirement/value-assess",
+        "./idea-requirement/scope-define",
+        "./idea-requirement/feasibility-assess",
+        "./idea-requirement/solution-design",
+        "./idea-requirement/acceptance-criteria",
+        "./idea-requirement/requirement-assemble"
       ]
     }
   ]
