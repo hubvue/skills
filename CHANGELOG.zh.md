@@ -2,6 +2,15 @@
 
 本项目的所有重要更改都将记录在此文件中。
 
+## 1.13.0 - 2026-06-23
+
+### 功能特性
+- `idea-requirement`: 新增插件分类，提供以证据驱动、将原始想法转化为完整需求的工作流。包含 `idea-requirement` 编排器以及 12 个阶段技能（`idea-intake`、`motivation-clarify`、`painpoint-validate`、`scenario-restore`、`user-identify`、`goal-define`、`value-assess`、`scope-define`、`feasibility-assess`、`solution-design`、`acceptance-criteria`、`requirement-assemble`）。每个阶段都会持久化带编号的阶段文档，并通过 Web Search 证据支撑决策。
+- `clean-code`: 新增 project 技能，提供 Clean Code 规范总览与路由，覆盖命名、函数、注释、格式、对象与数据结构、错误处理、边界、测试、类、系统、并发、简单设计、渐进式重构及各类代码坏味道，并按需加载 references 中对应的规则文件。
+
+### 文档
+- 更新 `README.md` 与 `README.zh.md`，补充 `idea-requirement` 分类与 `clean-code` 技能说明。
+
 ## 1.12.0 - 2026-04-14
 
 ### 功能特性

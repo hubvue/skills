@@ -148,6 +148,12 @@ Project-related skills for documentation and analysis.
   4. Execute and verify - Track migration progress, blockers, validation, release readiness, and rollback
   5. Cleanup - Remove migration debt and define follow-up governance
 
+- **clean-code** - Clean Code overview and router covering naming, functions, comments, formatting, objects and data structures, error handling, boundaries, tests, classes, systems, concurrency, simple design, progressive refinement, and code smells. Loads the matching rule file under references on demand instead of front-loading all rules.
+
+  **When to invoke:** When reviewing code, refactoring, writing new code, or answering any clean code / code smell / readability question.
+
+  **Key behavior:** Acts as a topic router - identifies the relevant clean code concern and loads the corresponding reference rule file (e.g. meaningful names, functions, error handling, code smells) to apply focused guidance.
+
 ### context-engineering
 
 Context engineering skills for prompt optimization and management.
@@ -294,6 +300,32 @@ Productivity tools for workflow optimization.
   - Do not invent unsupported APIs, features, or guarantees
   - State missing information explicitly when the source material is incomplete
   - Keep the target skill scoped and maintainable
+
+### idea-requirement
+
+Evidence-driven workflow that turns a raw idea into a complete, decision-ready requirement through a sequence of stage skills, each persisting a numbered stage document and grounding decisions in Web Search evidence.
+
+#### Skills
+
+- **idea-requirement** - Orchestrates the full evidence-driven workflow that turns a raw idea into a complete requirement by running 12 node skills with document persistence and Web Search evidence.
+
+  **When to invoke:** When you want to run the end-to-end idea-to-requirement workflow rather than a single stage.
+
+  **Stage skills (run in order):**
+  1. **idea-intake** - Record a raw idea, create the idea workspace, and initialize status and source files (`00-idea-intake.md`).
+  2. **motivation-clarify** - Clarify why the idea exists and what external background or trigger supports it (`01-motivation.md`).
+  3. **user-identify** - Identify target users, first adopters, non-target users, and user characteristics (`02-users.md`).
+  4. **scenario-restore** - Restore realistic user scenarios, current workflow, target workflow, and trigger moments (`03-scenarios.md`).
+  5. **painpoint-validate** - Validate whether pain points are real, frequent, severe, and poorly solved today (`04-painpoints.md`).
+  6. **value-assess** - Assess user, business, and engineering value, priority, and value strength (`05-value.md`).
+  7. **feasibility-assess** - Assess technical, product, business, cost, time, risk, and MVP feasibility (`06-feasibility.md`).
+  8. **goal-define** - Turn vague intent into measurable user, business, and engineering goals and success metrics (`07-goals.md`).
+  9. **solution-design** - Design solution, modules, flow, inputs, outputs, processing logic, fallback, and tradeoffs (`08-solution.md`).
+  10. **scope-define** - Define MVP scope, non-scope, future scope, and tradeoff reasons (`09-scope.md`).
+  11. **acceptance-criteria** - Define functional, process, exception, and non-functional acceptance criteria and DoD (`10-acceptance.md`).
+  12. **requirement-assemble** - Assemble all stage documents and research into the final requirement, decision, and source summary (`11-requirement.md`).
+
+  **When to invoke a single stage:** Each stage skill can also run independently to produce its stage document from upstream stage documents.
 
 ## Skill Structure
 

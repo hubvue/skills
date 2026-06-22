@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file.
 
+## 1.13.0 - 2026-06-23
+
+### Features
+- `idea-requirement`: New plugin category providing an evidence-driven workflow that turns a raw idea into a complete requirement. Adds the `idea-requirement` orchestrator plus 12 stage skills (`idea-intake`, `motivation-clarify`, `painpoint-validate`, `scenario-restore`, `user-identify`, `goal-define`, `value-assess`, `scope-define`, `feasibility-assess`, `solution-design`, `acceptance-criteria`, `requirement-assemble`). Each stage persists a numbered stage document and grounds decisions in Web Search evidence.
+- `clean-code`: New project skill providing a Clean Code overview and router covering naming, functions, comments, formatting, objects/data structures, error handling, boundaries, tests, classes, systems, concurrency, simple design, progressive refinement, and code smells, loading the matching rule file under references on demand.
+
+### Documentation
+- Updated `README.md` and `README.zh.md` to document the new `idea-requirement` category and the `clean-code` skill.
+
 ## 1.12.0 - 2026-04-14
 
 ### Features
