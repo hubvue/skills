@@ -301,31 +301,29 @@ npx skills add hubvue/skills
   - 当源材料不完整时，明确说明缺失信息
   - 保持目标技能范围可控且可维护
 
-### idea-requirement
+### idea-incubation
 
-以证据驱动的工作流，通过一系列阶段技能将原始想法转化为完整、可决策的需求。每个阶段都会持久化带编号的阶段文档，并通过 Web Search 证据支撑决策。
+一个证据驱动的想法孵化工作流，将原始产品想法逐步转化为经过验证、可做决策的完整需求。它只暴露一个公共 Skill，12 个阶段均作为内部 references，由一个命令统一负责路由、状态、证据、修订与持久化产物。
 
 #### 技能
 
-- **idea-requirement** - 编排完整的证据驱动工作流，通过运行 12 个节点技能（带文档持久化与 Web Search 证据）将原始想法转化为完整需求。
+- **idea-incubation** - 执行指定孵化阶段，自动补齐缺失的前置阶段，并在上游阶段被修订时重流受影响的下游产物。
 
-  **何时调用：** 当需要运行端到端的“想法到需求”工作流，而非单个阶段时。
+  **CLI 示例：**
 
-  **阶段技能（按顺序运行）：**
-  1. **idea-intake** - 记录原始想法，创建想法工作区，并初始化状态与来源文件（`00-idea-intake.md`）。
-  2. **motivation-clarify** - 澄清想法存在的原因及支撑它的外部背景或触发因素（`01-motivation.md`）。
-  3. **user-identify** - 识别目标用户、首批采用者、非目标用户及用户特征（`02-users.md`）。
-  4. **scenario-restore** - 还原真实用户场景、当前流程、目标流程与触发时刻（`03-scenarios.md`）。
-  5. **painpoint-validate** - 验证痛点是否真实、高频、严重且当前缺乏良好解决方案（`04-painpoints.md`）。
-  6. **value-assess** - 评估用户价值、业务价值、工程价值、优先级与价值强度（`05-value.md`）。
-  7. **feasibility-assess** - 评估技术、产品、业务、成本、时间、风险与 MVP 可行性（`06-feasibility.md`）。
-  8. **goal-define** - 将模糊意图转化为可衡量的用户、业务与工程目标及成功指标（`07-goals.md`）。
-  9. **solution-design** - 设计方案、模块、流程、输入、输出、处理逻辑、兜底与权衡（`08-solution.md`）。
-  10. **scope-define** - 定义 MVP 范围、非范围、未来范围与取舍原因（`09-scope.md`）。
-  11. **acceptance-criteria** - 定义功能、流程、异常与非功能验收标准及 DoD（`10-acceptance.md`）。
-  12. **requirement-assemble** - 汇总所有阶段文档与调研，形成最终需求、决策与来源摘要（`11-requirement.md`）。
+  ```bash
+  /idea-incubation intake "一个把会议记录转化为产品决策的 AI 助手"
+  /idea-incubation motivation
+  /idea-incubation feasibility
+  /idea-incubation users "首个版本聚焦产品经理"
+  /idea-incubation assemble
+  ```
 
-  **何时调用单个阶段：** 每个阶段技能也可独立运行，基于上游阶段文档生成自身的阶段文档。
+  命令格式始终为 `/idea-incubation <phase> [阶段输入]`，不再使用 `start`、`run`、`continue` 等动作子命令。
+
+  **内部阶段：** intake → motivation → users → scenarios → painpoints → value → feasibility → goals → solution → scope → acceptance → assemble。
+
+  每个阶段都会写入编号阶段文档和调研记录。工作流会区分事实、推断与假设，维护共享来源注册表，并允许暂停、重流、延后或否决想法，而不是强制生成需求。
 
 ## 技能结构
 

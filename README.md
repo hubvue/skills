@@ -301,31 +301,29 @@ Productivity tools for workflow optimization.
   - State missing information explicitly when the source material is incomplete
   - Keep the target skill scoped and maintainable
 
-### idea-requirement
+### idea-incubation
 
-Evidence-driven workflow that turns a raw idea into a complete, decision-ready requirement through a sequence of stage skills, each persisting a numbered stage document and grounding decisions in Web Search evidence.
+An evidence-driven workflow that incubates a raw product idea into a validated, decision-ready requirement. It exposes one public skill and keeps its 12 phases as internal references, giving one command ownership of routing, state, evidence, revisions, and durable artifacts.
 
-#### Skills
+#### Skill
 
-- **idea-requirement** - Orchestrates the full evidence-driven workflow that turns a raw idea into a complete requirement by running 12 node skills with document persistence and Web Search evidence.
+- **idea-incubation** - Executes the named incubation phase, automatically heals missing prerequisites, and reflows affected downstream artifacts when an earlier phase is revised.
 
-  **When to invoke:** When you want to run the end-to-end idea-to-requirement workflow rather than a single stage.
+  **CLI examples:**
 
-  **Stage skills (run in order):**
-  1. **idea-intake** - Record a raw idea, create the idea workspace, and initialize status and source files (`00-idea-intake.md`).
-  2. **motivation-clarify** - Clarify why the idea exists and what external background or trigger supports it (`01-motivation.md`).
-  3. **user-identify** - Identify target users, first adopters, non-target users, and user characteristics (`02-users.md`).
-  4. **scenario-restore** - Restore realistic user scenarios, current workflow, target workflow, and trigger moments (`03-scenarios.md`).
-  5. **painpoint-validate** - Validate whether pain points are real, frequent, severe, and poorly solved today (`04-painpoints.md`).
-  6. **value-assess** - Assess user, business, and engineering value, priority, and value strength (`05-value.md`).
-  7. **feasibility-assess** - Assess technical, product, business, cost, time, risk, and MVP feasibility (`06-feasibility.md`).
-  8. **goal-define** - Turn vague intent into measurable user, business, and engineering goals and success metrics (`07-goals.md`).
-  9. **solution-design** - Design solution, modules, flow, inputs, outputs, processing logic, fallback, and tradeoffs (`08-solution.md`).
-  10. **scope-define** - Define MVP scope, non-scope, future scope, and tradeoff reasons (`09-scope.md`).
-  11. **acceptance-criteria** - Define functional, process, exception, and non-functional acceptance criteria and DoD (`10-acceptance.md`).
-  12. **requirement-assemble** - Assemble all stage documents and research into the final requirement, decision, and source summary (`11-requirement.md`).
+  ```bash
+  /idea-incubation intake "An AI assistant that turns meeting notes into product decisions"
+  /idea-incubation motivation
+  /idea-incubation feasibility
+  /idea-incubation users "Focus the first release on product managers"
+  /idea-incubation assemble
+  ```
 
-  **When to invoke a single stage:** Each stage skill can also run independently to produce its stage document from upstream stage documents.
+  The command format is always `/idea-incubation <phase> [phase-input]`; there are no action subcommands such as `start`, `run`, or `continue`.
+
+  **Internal phases:** intake → motivation → users → scenarios → painpoints → value → feasibility → goals → solution → scope → acceptance → assemble.
+
+  Each phase writes a numbered phase document and a research record. The workflow separates facts, inferences, and assumptions, maintains a shared source registry, and can pause, reflow, defer, or reject an idea instead of forcing approval.
 
 ## Skill Structure
 

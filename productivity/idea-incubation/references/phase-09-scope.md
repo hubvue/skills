@@ -1,0 +1,37 @@
+# Phase 09: Scope
+
+## Purpose
+
+Define the MVP, explicit non-scope, future scope, and the reasoning behind each tradeoff.
+
+## Inputs
+
+- `06-feasibility.md`
+- `07-goals.md`
+- `08-solution.md`
+- `research/08-solution-research.md`
+- `sources/sources.json`
+
+## Work
+
+1. Break the solution into independently understandable capabilities.
+2. Classify each capability as MVP, excluded, or future.
+3. Preserve the smallest end-to-end path that can test the core value hypothesis.
+4. Remove expensive features with low validation value.
+5. Record scope risks and explicit tradeoff reasons.
+
+Suggested search questions:
+
+- What is the minimum useful capability in comparable products?
+- Which features do users value first?
+- Which features are costly but weak for validation?
+
+## Output
+
+Write `09-scope.md` with feature inventory, MVP, non-scope, future scope, tradeoff rationale, scope risks, Evidence Block, phase conclusion, and downstream handoff.
+
+Write `research/09-scope-research.md`.
+
+## Gate
+
+`continue` when the MVP is bounded and still tests the value hypothesis. Use `revise` for an oversized or internally inconsistent solution.

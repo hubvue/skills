@@ -2,6 +2,14 @@
 
 本项目的所有重要更改都将记录在此文件中。
 
+## 未发布
+
+### 重构
+- 将 `idea-requirement` 重命名为 `idea-incubation` 并迁入 `productivity`，同时把“编排器 + 12 个公共节点 Skill”收敛为一个按阶段调用的工作流 Skill。接口统一为 `/idea-incubation <phase> [阶段输入]`；原节点能力改为内部 references，共用一套产物、状态和研究契约。
+
+### 文档
+- 更新 `README.md`、`README.zh.md` 与 `productivity` marketplace 注册信息，统一使用单 Skill 的 `idea-incubation` 接口。
+
 ## 1.13.0 - 2026-06-23
 
 ### 功能特性

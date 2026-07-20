@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file.
 
+## Unreleased
+
+### Refactor
+- Renamed `idea-requirement` to `idea-incubation`, moved it under `productivity`, and replaced the orchestrator plus 12 public node skills with one phase-addressed workflow skill. The interface is `/idea-incubation <phase> [phase-input]`; the former node skills are internal references with one shared artifact, status, and research contract.
+
+### Documentation
+- Updated `README.md`, `README.zh.md`, and the `productivity` marketplace registration for the single-skill `idea-incubation` interface.
+
 ## 1.13.0 - 2026-06-23
 
 ### Features
