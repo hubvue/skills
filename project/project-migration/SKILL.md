@@ -25,12 +25,17 @@ If the user changes an earlier phase after later-phase work already exists, revi
 
 1. Prefer migration-first, governance-later unless the user explicitly wants a broader rewrite.
 2. Audit inherited or undocumented projects before giving large migration execution advice.
-3. Split work by business slice, route slice, or flow instead of file type.
+3. Split work by business slice, route slice, or flow by default. Use file, package, or module units only when dependency structure is the real migration boundary.
 4. Prefer adapters, bridge layers, or compatibility layers for major old-vs-new differences before rewriting business logic.
 5. Inspect and record hidden dependencies, especially globally registered components, global mixins, prototype injections, env vars, route guards, permission injection, analytics, monitoring, theme variables, upload and download behavior, bootstrap logic, global styles, and `window` injections.
 6. State assumptions and unknowns explicitly when information is incomplete.
 7. Produce concrete artifacts, preferably under `docs/migration/`, rather than only conversational advice.
 8. Report every phase with the current phase, inputs, actions, outputs, exit criteria, risks, and next step.
+9. Select and record a migration posture: structure-preserving, redesign, incremental, or hybrid.
+10. Establish a credible objective Judge before broad execution. Validate it against the old baseline, repeatability, and a safe isolated negative control.
+11. Use a durable queue or manifest as the source of truth. Do not infer completion from chat history or file existence alone.
+12. Separate implementation and independent review responsibilities. Multi-agent execution is optional; use a fresh restricted-context review pass when working with one agent.
+13. When failures repeat across units, fix the Rulebook, Judge, queue, or workflow that produced them, then revalidate the affected scope.
 
 ## Phase Selection
 
@@ -57,6 +62,7 @@ When producing artifacts, prefer the templates and checklists in:
 - `references/phase-guide.md`
 - `references/update-rules.md`
 - `references/status-schema.md`
+- `references/loop-rules.md`
 - `references/artifact-templates.md`
 - `references/migration-checklists.md`
 - `references/risk-playbook.md`

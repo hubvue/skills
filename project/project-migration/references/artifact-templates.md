@@ -2,6 +2,32 @@
 
 Use these templates to create migration documents quickly.
 
+## Contents
+
+- `00-context.md`
+- `01-project-overview.md`
+- `02-business-map.md`
+- `03-core-flows.md`
+- `04-dependency-inventory.md`
+- `04-judge-inventory.md`
+- `05-system-map.md`
+- `06-style-asset-inventory.md`
+- `07-diff-matrix.md`
+- `07-rulebook.md`
+- `07-gap-inventory.md`
+- `08-migration-plan.md`
+- `08-judge-plan.md`
+- `09-module-batches.md`
+- `10-adapter-plan.md`
+- `11-pilot-scope.md`
+- `12-pilot-checklist.md`
+- `13-pilot-retro.md`
+- `14-execution-log.md`
+- `15-open-issues.md`
+- `16-verification-checklist.md`
+- `17-cleanup-plan.md`
+- `18-long-term-governance.md`
+
 ## 00-context.md
 ```md
 # Migration Context
@@ -11,9 +37,20 @@ Use these templates to create migration documents quickly.
 - New repository:
 - Reason for migration:
 
+## Business Case
+- Expected gains:
+- Cost drivers:
+- Why now:
+- No-go criteria:
+
+## Migration Posture
+- Selected posture: structure-preserving / redesign / incremental / hybrid
+- Reason:
+- Default work unit:
+
 ## Goals
-- 
-- 
+-
+-
 
 ## Scope
 - Included in this migration:
@@ -26,12 +63,16 @@ Use these templates to create migration documents quickly.
 - Technical constraints:
 
 ## Success Criteria
-- 
-- 
+-
+-
 
 ## Key Assumptions
 - 
 - 
+
+## Decision
+- Proceed / do not migrate / more evidence required:
+- Decision evidence:
 ```
 
 ## 01-project-overview.md
@@ -106,6 +147,51 @@ Use these templates to create migration documents quickly.
 ## Implicit Dependencies
 ```
 
+## 04-judge-inventory.md
+```md
+# Judge Inventory
+
+## Sources of Executable Truth
+| Check / Scenario | Surface | Portable to Target | Cost | Determinism | Notes |
+|---|---|---|---|---|---|
+|  |  |  |  |  |  |
+
+## Old-system Baseline
+- Environment:
+- Passing checks:
+- Inherited failures:
+- Known nondeterminism:
+
+## Coverage Gaps
+- Internal-coupled tests that cannot port:
+- Missing public-behavior coverage:
+- Candidate parity scenarios:
+```
+
+## 05-system-map.md
+```md
+# System and Dependency Map
+
+## Business / Runtime Boundaries
+| Boundary | Responsibility | Entry | Dependencies | Risk |
+|---|---|---|---|---|
+|  |  |  |  |  |
+
+## Migration Ordering
+| Unit ID | Unit Type | Scope | Depends On | Target Boundary | Ready Condition |
+|---|---|---|---|---|---|
+|  |  |  |  |  |  |
+
+## Cycles and Packaging Constraints
+- Cycle:
+- Impact:
+- Planned boundary handling:
+
+## Evidence
+- Deterministic tooling used:
+- Manual assumptions:
+```
+
 ## 06-style-asset-inventory.md
 ```md
 # Style Asset Inventory
@@ -147,6 +233,40 @@ Use these templates to create migration documents quickly.
 | Release flow |  |  |  |  |  |
 ```
 
+## 07-rulebook.md
+```md
+# Migration Rulebook
+
+## Posture and Scope
+- Migration posture:
+- Rulebook role: canonical mapping / design decisions / compatibility rules
+- Current revision:
+
+## Rules
+| Rule ID | Area | Decision | Rationale / Evidence | Scope | Exceptions | Verification |
+|---|---|---|---|---|---|---|
+| R-001 |  |  |  |  |  |  |
+
+## Amendment Queue
+| Proposed Change | Reason | Affected Units | Decision | Target Revision |
+|---|---|---|---|---|
+|  |  |  |  |  |
+
+## Revision History
+| Revision | Date | Change | Reason | Affected Scope |
+|---|---|---|---|---|
+|  |  |  |  |  |
+```
+
+## 07-gap-inventory.md
+```md
+# Gap Inventory
+
+| Gap ID | Location / Scope | Applicable Rule | Why Default Handling Fails | Evidence | Handling | Verification | Owner | Status |
+|---|---|---|---|---|---|---|---|---|
+| G-001 |  |  |  |  |  |  |  | open |
+```
+
 ## 08-migration-plan.md
 ```md
 # Migration Plan
@@ -172,14 +292,54 @@ Use these templates to create migration documents quickly.
 |  |  |  |
 ```
 
+## 08-judge-plan.md
+```md
+# Judge Plan
+
+## Judge Design
+- Judge type(s):
+- Comparable old/target surface:
+- Inputs and environment:
+- Expected outputs / assertions:
+
+## Comparator Rules
+- Normalization:
+- Nondeterminism handling:
+- Environment differences:
+- Unsupported behavior:
+
+## Validation
+- Old baseline result:
+- Known-good repeatability result:
+- Safe isolated negative control:
+- Evidence that the Judge catches breakage:
+
+## Cost Placement
+- Per-unit checks:
+- Per-batch checks:
+- Coordinated expensive checks:
+- Operation coordinator:
+
+## Readiness
+- State: missing / designed / validated / passing / failing / limited
+- Remaining blockers:
+```
+
 ## 09-module-batches.md
 ```md
 # Module Batches
 
-| Batch | Business Scope | Included Modules / Routes | Key Differences Covered | Dependencies | Validation Focus | Status |
-|---|---|---|---|---|---|---|
-| 1 |  |  |  |  |  |  |
-| 2 |  |  |  |  |  |  |
+Allowed statuses: `pending`, `ready`, `in_progress`, `review`, `blocked`, `done`, `revalidation_required`.
+
+| Unit ID | Posture / Type | Scope | Depends On | Owner / Role | Expected Output / Boundary | Rule IDs | Gap IDs | Required Judge Evidence | Status | Completion Evidence |
+|---|---|---|---|---|---|---|---|---|---|---|
+| U-001 |  |  |  |  |  |  |  |  | pending |  |
+
+## Queue Rules
+- Readiness derivation:
+- Done criteria:
+- Reconstruction source:
+- Shared operation/result IDs:
 ```
 
 ## 10-adapter-plan.md
@@ -198,6 +358,9 @@ Use these templates to create migration documents quickly.
 ## Selected Pilot
 - Module / route:
 - Why this slice:
+- Migration posture:
+- Process hypothesis:
+- Pilot method:
 - Risks covered:
 - Risks intentionally not covered:
 
@@ -212,6 +375,10 @@ Use these templates to create migration documents quickly.
 ## Rollback Path
 - Switch-back mechanism:
 - Validation before cutover:
+
+## Output Disposition
+- Retain / discard:
+- Reason:
 ```
 
 ## 12-pilot-checklist.md
@@ -225,6 +392,12 @@ Use these templates to create migration documents quickly.
 - [ ] Styles are acceptable
 - [ ] Analytics and monitoring are validated
 - [ ] Rollback path is tested
+- [ ] Applicable Rulebook decisions were followed
+- [ ] The Judge produced meaningful evidence
+- [ ] The queue can be stopped and reconstructed from durable state
+- [ ] Independent review was completed
+- [ ] Expensive-operation placement was validated where applicable
+- [ ] Retain/discard disposition is recorded
 ```
 
 ## 13-pilot-retro.md
@@ -240,6 +413,14 @@ Use these templates to create migration documents quickly.
 ## Required Adapters
 - 
 
+## Judge and Queue Findings
+-
+
+## Rule / Process Amendments
+| Amendment | Reason | Affected Units | Revalidation Required |
+|---|---|---|---|
+|  |  |  |  |
+
 ## Recommended Standard Pattern
 - 
 
@@ -251,23 +432,38 @@ Use these templates to create migration documents quickly.
 ```md
 # Execution Log
 
-| Date | Batch | Scope | Progress | Blockers | Decision | Next Action |
-|---|---|---|---|---|---|---|
-|  |  |  |  |  |  |  |
+| Date | Unit ID | Role | Rule Revision | Operation / Result ID | Output | Review | Judge Evidence | Status | Next Action |
+|---|---|---|---|---|---|---|---|---|---|
+|  |  |  |  |  |  |  |  |  |  |
 ```
 
 ## 15-open-issues.md
 ```md
 # Open Issues
 
-| Issue | Type | Affected Scope | Impact | Mitigation | Owner | Status |
-|---|---|---|---|---|---|---|
-|  |  |  |  |  |  |  |
+| Issue | Root-cause Category | Isolated / Systemic | Affected Units | Rule / Judge / Queue Impact | Mitigation | Owner | Status |
+|---|---|---|---|---|---|---|---|
+|  |  |  |  |  |  |  |  |
 ```
 
 ## 16-verification-checklist.md
 ```md
 # Verification Checklist
+
+## Judge Health
+- Judge state:
+- Old-system baseline:
+- Repeatability result:
+- Safe negative-control result:
+- Comparator limitations:
+
+## Parity Summary
+- Total checks:
+- Passed:
+- Regressions:
+- Inherited failures:
+- Accepted differences:
+- Unresolved gaps:
 
 - [ ] Route is reachable
 - [ ] Core APIs behave correctly
@@ -277,6 +473,9 @@ Use these templates to create migration documents quickly.
 - [ ] No obvious performance regression
 - [ ] Release path is validated
 - [ ] Rollback path is validated
+- [ ] Old and target systems were evaluated on comparable inputs
+- [ ] Inherited failures were classified separately from regressions
+- [ ] Every accepted difference has an owner and rationale
 ```
 
 ## 17-cleanup-plan.md
@@ -286,6 +485,11 @@ Use these templates to create migration documents quickly.
 | Item | Why It Exists | Remove When | Risk If Delayed | Owner | Status |
 |---|---|---|---|---|---|
 |  |  |  |  |  |  |
+
+## Deferred Migration Markers
+| Marker / Scope | Reason | Required Fix | Parity Revalidation | Status |
+|---|---|---|---|---|
+|  |  |  |  |  |
 ```
 
 ## 18-long-term-governance.md
@@ -306,4 +510,9 @@ Use these templates to create migration documents quickly.
 ## Success Metrics
 - 
 - 
+
+## Artifact Retention
+- Rulebook decisions retained for maintenance:
+- Gap decisions retained for maintenance:
+- Migration-only artifacts to archive:
 ```

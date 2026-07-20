@@ -68,10 +68,30 @@ How to respond:
 ---
 
 ## 6. Default strategy for inherited undocumented projects
-If the user explicitly says things like “handover project”, “no documentation”, or “I don’t understand the old project”, default to:
+If the user explicitly says things like “no documentation” or “I don’t understand the old project” in the context of a real migration, default to:
 1. `intake`
 2. `audit`
 3. `map`
 4. then `diff / plan`
 
 Do not start directly from `execute`.
+
+---
+
+## 7. Recurring-failure process feedback
+
+Treat a failure as systemic when the same root cause affects multiple units or independent review shows that the producing Rulebook, Judge, queue logic, or workflow is incomplete.
+
+When a failure is systemic:
+
+1. Record the root-cause category, affected units, applicable rules, and evidence.
+2. Stop applying the same one-off fix to additional units.
+3. Update the producing Rulebook, Gap Inventory, Judge, queue logic, or workflow.
+4. Add a visible revision note and identify all affected pending and completed units.
+5. Mark affected completed units `revalidation_required`.
+6. Regenerate units when the changed rule controls generated structure; otherwise patch or revalidate with explicit evidence.
+7. Run a focused stress test of the revised process before resuming broad execution.
+
+For concurrent execution, queue Rulebook amendments during the active batch and publish one consistent revision at the batch boundary. Do not let workers silently use different rule revisions.
+
+Apply the same downstream consistency principle used for user-requested upstream changes: an execution finding that changes an upstream rule must propagate to every affected artifact and queue unit.

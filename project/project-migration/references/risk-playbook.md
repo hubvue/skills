@@ -34,12 +34,14 @@ The first migration phase tries to upgrade frameworks, replace UI libraries, red
 
 ## 4. The pilot module is a bad choice
 ### Signal
-The pilot is too simple to expose real problems, or too core to be safe.
+The pilot is too simple to expose real problems, too core to be safe, or produces working output without proving that the rules, Judge, queue, and review loop are reliable.
 
 ### Recommendation
 - Pick a medium-complexity module
 - Make sure it covers page, API, state, style, and permission differences
 - Ensure at least one teammate understands it well enough to support investigation
+- Grade the migration process as well as the pilot output
+- Record whether the output is retained or discarded
 
 ---
 
@@ -104,3 +106,60 @@ The migration consumes time, but stakeholders only see cost.
 ### Recommendation
 - Track at least three classes of metrics: delivery efficiency, stability, and build/release efficiency
 - Example metrics: build time, blank-screen rate, regression defect count, average changed files per task, onboarding time for a new page
+
+---
+
+## 11. The Judge is weak or broken
+### Signal
+The Judge passes deliberately invalid isolated inputs, fails nondeterministically, or reports widespread differences caused by comparator normalization rather than migrated behavior.
+
+### Recommendation
+- Establish the old-system baseline and inherited failures first
+- Repeat known-good runs to expose nondeterminism
+- Use a safe negative control in an isolated fixture, mock, or disposable branch/worktree
+- Debug comparator normalization and environment differences before trusting its verdicts
+
+---
+
+## 12. Rule revisions drift across active workers
+### Signal
+Different units cite different decisions for the same ambiguity, or workers update the Rulebook while other workers are still reading the old revision.
+
+### Recommendation
+- Treat the Rulebook as read-only inside an active concurrent batch
+- Queue amendments and publish one visible revision at the batch boundary
+- Mark every affected completed unit `revalidation_required`
+
+---
+
+## 13. The execution queue cannot resume mechanically
+### Signal
+Progress depends on chat history, individual memory, or a manually reconstructed list of completed files.
+
+### Recommendation
+- Use stable unit IDs, dependency IDs, statuses, and completion evidence
+- Derive readiness from durable queue state
+- Require output, resolved independent review, and Judge evidence before `done`
+
+---
+
+## 14. Review inherits implementation bias
+### Signal
+The same context writes and approves the change, or review accepts the Implementer's reasoning as evidence without checking source behavior and applicable rules.
+
+### Recommendation
+- Separate Implementer and Reviewer responsibilities
+- Use separate contexts when available
+- In single-agent mode, start a fresh restricted-context review pass using source evidence, rules, output/diff, and acceptance conditions
+
+---
+
+## 15. Expensive operations contend or duplicate work
+### Signal
+Multiple workers trigger full builds, suites, deploys, or environment resets concurrently, causing wasted cost, stale results, or shared-state failures.
+
+### Recommendation
+- Measure operation cost and statefulness before placing it in the loop
+- Keep cheap isolated checks per unit
+- Assign one coordinator to expensive shared operations and publish versioned result IDs
+- Map each failure back to queue units before the next run
