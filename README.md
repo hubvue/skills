@@ -323,7 +323,7 @@ An evidence-driven workflow that incubates a raw product idea into a validated, 
 
   **Internal phases:** intake → motivation → users → scenarios → painpoints → value → feasibility → goals → solution → scope → acceptance → assemble.
 
-  Each phase writes a numbered phase document and a research record. The workflow separates facts, inferences, and assumptions, maintains a shared source registry, and can pause, reflow, defer, or reject an idea instead of forcing approval.
+  Each phase runs explicit input and output quality gates before it can pass. When decision-critical user context is missing, the workflow asks exactly one question per turn, persists the answer, reevaluates the gate, and may continue with additional single-question turns. It also separates facts, inferences, and assumptions, maintains a shared source registry, and can pause, recover, reflow, defer, or reject an idea instead of forcing approval.
 
 ## Skill Structure
 

@@ -24,11 +24,25 @@ Suggested search questions:
 - Which interaction and architecture patterns are mature?
 - Which existing implementations can reduce risk?
 
+## Input quality gate
+
+Require a target user, critical scenario, validated pain, goals, and feasibility constraints. Use this internal question priority only for product choices that cannot be derived:
+
+1. “用户完成核心任务时必须保留的关键动作是什么？”
+2. “首版最不能接受的失败结果是什么？”
+3. “哪项现有能力必须被复用？”
+
+Pass when the smallest coherent solution can be designed without relying on an unresolved feasibility assumption.
+
 ## Output
 
 Write `08-solution.md` with solution overview, core flow, modules, user path, system logic, failure handling, alternatives, tradeoffs, Evidence Block, phase conclusion, and downstream handoff.
 
 Write `research/08-solution-research.md`.
+
+## Output quality gate
+
+Verify traceability to goals and painpoints, a complete core flow, explicit boundary, inputs/outputs, failure and degraded behavior, alternatives, tradeoffs, and no scope detail unsupported by the evidence.
 
 ## Completion
 

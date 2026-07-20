@@ -7,9 +7,17 @@ Consolidate the coherent phase artifacts into the final requirement, decision re
 ## Inputs
 
 - `00-idea-intake.md` through `10-acceptance.md`
-- all twelve research documents available through this phase
+- research documents for phases 00 through 10
 - `sources/sources.json`
 - `status.json`
+
+`research/11-assemble-research.md` is produced during this phase and is not an input prerequisite.
+
+## Input quality gate
+
+Require phases 00 through 10 to be passed with both gates complete, all corresponding artifacts present, no pending question, and no unresolved cross-phase contradiction. When a contradiction requires a user decision, ask one question naming one conflicting choice, for example: “最终需求应优先采用方案 A 还是方案 B？”
+
+If the gap belongs to an earlier phase, route a revision to that phase instead of hiding the problem in assembly. Pass only when the input set is coherent enough to synthesize without invention.
 
 ## Work
 
@@ -42,6 +50,10 @@ Also write:
 - `research/11-assemble-research.md`;
 - `decision.md` with decision, rationale, evidence level, unresolved risks, and next actions;
 - `sources/source-summary.md` grouped by claim and phase.
+
+## Output quality gate
+
+Verify synthesis rather than concatenation, cross-section consistency, complete traceability, resolved contradictions, explicit residual assumptions and risks, valid final decision rationale, and existence of `11-requirement.md`, `research/11-assemble-research.md`, `decision.md`, and `sources/source-summary.md` before completion.
 
 ## Gate
 

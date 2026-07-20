@@ -25,11 +25,25 @@ Suggested search questions:
 - What are the current limits, costs, and policy constraints?
 - Which dependency or risk dominates feasibility?
 
+## Input quality gate
+
+Require a validated pain and value hypothesis, a critical scenario, and known constraints or explicit acknowledgement that they are unknown. Use this internal question priority for private constraints:
+
+1. “当前已知最硬的实施约束是什么？”
+2. “首个版本必须依赖哪个现有系统或能力？”
+3. “哪个风险一旦成立就会让首版不可行？”
+
+Pass when the dominant dependencies and feasibility unknowns can be named and a reduced-scope hypothesis can be assessed.
+
 ## Output
 
 Write `06-feasibility.md` with feasibility by dimension, dependencies, risks, uncertainty, MVP feasibility, fallback options, Evidence Block, phase conclusion, and downstream handoff.
 
 Write `research/06-feasibility-research.md`.
+
+## Output quality gate
+
+Verify all relevant feasibility dimensions, dominant dependency, uncertainty, relative cost and time, legal/security/privacy constraints, MVP path, and fallback are covered without false precision.
 
 ## Gate
 

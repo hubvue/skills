@@ -323,7 +323,7 @@ npx skills add hubvue/skills
 
   **内部阶段：** intake → motivation → users → scenarios → painpoints → value → feasibility → goals → solution → scope → acceptance → assemble。
 
-  每个阶段都会写入编号阶段文档和调研记录。工作流会区分事实、推断与假设，维护共享来源注册表，并允许暂停、重流、延后或否决想法，而不是强制生成需求。
+  每个阶段必须通过输入与输出质量门禁。当缺少影响决策的用户上下文时，工作流每轮只提出一个问题，持久化回答并重新评估门禁；同一阶段可以进行多轮单问题补充。工作流还会区分事实、推断与假设，维护共享来源注册表，并允许暂停、恢复、重流、延后或否决想法，而不是强制生成需求。
 
 ## 技能结构
 

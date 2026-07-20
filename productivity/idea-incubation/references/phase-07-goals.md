@@ -25,11 +25,25 @@ Suggested search questions:
 - What improvement ranges are credible?
 - Which activation, retention, quality, or efficiency measures fit this idea?
 
+## Input quality gate
+
+Require validated value, a feasible direction, and at least one observable desired outcome. Use this internal question priority for owner-defined success:
+
+1. “成功后你最希望观察到哪个可验证结果？”
+2. “目前这个结果的基线是什么？”
+3. “你准备通过什么方式测量这个结果？”
+
+Pass when the primary outcome is testable and unsupported numeric targets can be labeled as hypotheses.
+
 ## Output
 
 Write `07-goals.md` with requirement goal, user/business/engineering goals, success metrics, measurement method, non-goals, metric rationale, Evidence Block, phase conclusion, and downstream handoff.
 
 Write `research/07-goals-research.md`.
+
+## Output quality gate
+
+Verify that goals express outcomes rather than features, user/business/engineering goals are distinct, each metric has a measurement method, unknown baselines are explicit, and non-goals constrain scope.
 
 ## Completion
 

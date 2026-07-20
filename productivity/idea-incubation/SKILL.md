@@ -1,6 +1,6 @@
 ---
 name: idea-incubation
-description: Incubate, validate, and refine a raw product idea into an evidence-backed, decision-ready requirement through a durable 12-phase workflow. Use when starting or resuming idea discovery, running a named incubation phase, revising an earlier conclusion, reviewing an idea workspace, or deciding whether an idea should become a formal requirement.
+description: Incubate, validate, and refine a raw product idea into an evidence-backed, decision-ready requirement through one durable 12-phase workflow. Use when starting or resuming idea discovery, executing or revising a named incubation phase, answering a pending phase question, or deciding whether an idea should become a formal requirement.
 ---
 
 # Idea Incubation
@@ -14,14 +14,16 @@ Act as the single workflow controller for evidence-driven idea incubation. Treat
 3. Search only when external, current, or uncertain information can change a decision.
 4. Separate user facts, sourced facts, inferences, and assumptions.
 5. Heal missing or stale prerequisites before running a later phase.
-6. Reflow affected downstream artifacts after an upstream revision.
-7. Require one explicit phase name per invocation; run additional phases only for dependency healing or forward reflow.
+6. Reflow downstream artifacts after an upstream revision.
+7. Require one explicit phase name per new command; a pending-question answer resumes its stored phase and target without another command.
 8. Pause, defer, or reject weak ideas instead of forcing a requirement.
+9. Run input and output quality gates for every phase; never pass a phase with insufficient context or output.
+10. When user context is required, ask exactly one question per turn, persist the answer, and reevaluate before asking another.
 
 ## CLI contract
 
 ```text
-/idea-incubation <phase> [phase-input] [--workspace <path>] [--research <depth>] [--no-web]
+/idea-incubation <phase> [phase-input]
 ```
 
 Examples:
@@ -29,20 +31,21 @@ Examples:
 ```text
 /idea-incubation intake "A tool that summarizes product feedback"
 /idea-incubation motivation
-/idea-incubation painpoints --research deep
+/idea-incubation painpoints
 /idea-incubation users "Focus the first release on product managers"
 /idea-incubation assemble
 ```
 
-The first positional argument must be one of the canonical phase names below. Do not introduce action subcommands such as `start`, `run`, `continue`, `resume`, `status`, or `review`.
+The first positional argument must be one of the canonical phase names below. Do not introduce action subcommands or public flags such as `start`, `run`, `continue`, `resume`, `status`, `review`, `--workspace`, or `--research`.
 
-- `intake` with a raw idea creates a new workspace when none is selected.
-- A phase that has not run executes after healing any missing or stale prerequisites.
-- A phase that already exists is revised or re-executed. Preserve valid content, apply supplied phase input, and reflow affected downstream phases through the previous highest meaningful phase.
-- Resolve the workspace from `--workspace` when provided; otherwise use the active idea workspace from the conversation or repository context.
-- Stop after the named phase and any required dependency healing or forward reflow complete.
+- `intake` with a raw idea creates a new workspace when none is active.
+- A phase that has not run executes after healing missing or stale prerequisites.
+- A valid phase invoked without new input is idempotent: report its current result without changing artifacts or revision counters.
+- A phase invoked with new material information is revised. Preserve valid content and reflow every later phase through the previous highest meaningful phase.
+- Resolve the workspace through the durable active-workspace rules. Ask one selection question only when multiple candidates remain ambiguous.
+- Stop after the named phase and required dependency healing or forward reflow complete.
 
-Research depths are `none`, `light`, `standard`, and `deep`. `--no-web` forces `none` but still requires a documented no-search decision.
+Choose research depth internally from `none`, `light`, `standard`, and `deep` according to the phase default, current uncertainty, and research policy.
 
 ## Canonical phase order
 
@@ -70,6 +73,8 @@ Before mutating a workspace, read:
 - `references/artifact-rules.md`
 - `references/status-schema.md`
 - `references/research-policy.md`
+- `references/routing-rules.md`
+- `references/quality-gates.md`
 
 Before executing a phase, also read its complete reference:
 
@@ -86,23 +91,33 @@ Before executing a phase, also read its complete reference:
 - `acceptance`: `references/phase-10-acceptance.md`
 - `assemble`: `references/phase-11-assemble.md`
 
+Use `references/validation-scenarios.md` when changing or forward-testing workflow behavior.
+
 ## Execution algorithm
 
-1. Parse the phase name, phase input, workspace override, research override, and Web Search permission.
-2. Resolve the workspace. For a new idea, generate `idea-YYYYMMDD-short-slug` and bootstrap it.
-3. Load and normalize `status.json`, including legacy phase identifiers.
-4. Determine the previous highest meaningful phase and requested phase.
-5. Include missing or stale prerequisites in the execution range.
-6. Before each phase, read its reference and inputs, mark it `running`, and decide whether to search.
-7. Always write both the phase document and research document. The research document contains evidence or a no-search rationale.
-8. Update `sources/sources.json` when sources were used, then update `status.json` after artifact writes succeed.
-9. Apply the decision transition and stop when the requested phase and any required reflow complete, or when a gate requires it.
+1. Parse the canonical phase and optional phase input.
+2. Resolve or create the active workspace using `artifact-rules.md`; do not guess when multiple workspaces remain ambiguous.
+3. Load, migrate, and validate `status.json`. Recover any interrupted `running`, `blocked`, or pending-question state before new work.
+4. If the user is answering `pendingQuestion`, append the answer to `logs/workflow.log`, clear the pending question, and resume that phase even without another slash command.
+5. Use `routing-rules.md` to determine idempotency, dependency healing, revision mode, reflow ceiling, and the ordered execution range.
+6. Before each phase, read its reference and inputs and run the input quality gate. If required user context is missing, persist one highest-value question, set the phase to `needs_data`, ask only that question, and stop the turn.
+7. When the input gate is ready, mark the phase `running`, choose research depth internally, perform research, and draft the phase output.
+8. Run the output quality gate. If analysis reveals one decision-critical user-context gap, persist and ask one question; otherwise record explicit assumptions for non-critical gaps.
+9. Write the phase and research artifacts, update `sources/sources.json`, and append workflow events.
+10. Apply the phase decision and only then commit the resulting transition to `status.json`.
+11. Run `node scripts/validate-workspace.js <idea-workspace>`. Repair validation failures or transition the responsible phase to `blocked/retry`, then validate again.
+12. Stop when the requested phase plus required healing or reflow completes, or when a gate pauses or closes the workflow.
+
+## Question loop
+
+Follow `quality-gates.md` whenever a phase lacks required context. Ask exactly one atomic question in a turn. Do not bundle subquestions or reveal the remaining queue. After each answer, persist it, reevaluate all available context, and either proceed or ask the next single highest-value question. A phase may use as many turns as necessary, but must not repeat an answered or explicitly unavailable question.
 
 ## Decision transitions
 
 - `continue`: mark the phase `passed` and advance only as far as the command permits.
-- `revise`: require `targetPhase`, reason, affected artifacts, and questions; mark affected phases `stale` and reflow.
-- `need_data`: mark the phase `needs_data`, set workflow status to `paused`, record missing information, and stop.
+- `revise`: require `targetPhase`, reason, affected artifacts, and unresolved questions; mark the requesting and later affected phases `stale`, then reflow from the target.
+- `need_data`: mark the phase `needs_data`, set workflow status to `paused`, record missing information and one pending question when user context is required, and stop.
+- `retry`: mark an interrupted or failed phase `blocked`, set workflow status to `paused`, record the recoverable failure, and resume only after recovery checks pass.
 - `stop`: mark the phase `stopped`, set workflow status to `closed`, write `decision.md`, choose `idea_pool`, `deferred`, or `rejected`, and stop.
 
 Gate rules:
@@ -112,19 +127,26 @@ Gate rules:
 - `feasibility`: attempt a reduced-scope hypothesis before rejection.
 - `scope`: an oversized MVP revises `solution` or `scope`.
 - `acceptance`: untestable outcomes revise `goals`, `solution`, or `scope`.
-- `assemble`: complete the assembly only after all checks pass; choose the justified final decision, and reserve `approved_requirement` for an approval-quality requirement.
+- `assemble`: complete only after every check passes; reserve `approved_requirement` for an approval-quality requirement.
 
 ## Reflow rules
 
-1. Preserve still-valid content and append revision context.
-2. Increment the revised phase's revision number.
-3. Mark affected downstream phases `stale`; do not delete their artifacts.
-4. Re-execute them in order through the previous highest meaningful phase.
-5. Stop if a refreshed phase returns `need_data` or `stop`.
-6. Never leave a phase `passed` when a required input is stale.
+1. Snapshot the previous highest meaningful phase before changing state.
+2. Preserve still-valid content, append revision context, and increment the revised phase only after its output gate passes.
+3. Mark every later phase through the snapshot ceiling `stale`; do not delete artifacts.
+4. Re-execute stale phases in canonical order through that ceiling, stopping on `need_data`, `retry`, or `stop`.
+5. Never leave a phase `passed` when any earlier phase in the canonical prefix is unresolved.
+
+## Lifecycle rules
+
+- Treat a valid, unchanged, already-passed phase as a no-op.
+- Resume a paused question loop from the pending phase when the user replies.
+- Recover incomplete writes before routing new work; never trust `running` as completed.
+- Reopen `completed` or `closed` workflows only when the user supplies new material information or explicitly requests reevaluation. Reset the final decision to `pending`, preserve prior decisions, and route the revision normally.
+- Keep terminal workflows unchanged when invoked without new information; report their decision and required reopening context.
 
 ## Completion
 
 Complete the workflow only when `assemble` finishes, all twelve phase and research documents exist, no required phase is unresolved, all sources are registered, and `11-requirement.md`, `decision.md`, and `sources/source-summary.md` exist. The final decision must be `approved_requirement`, `idea_pool`, `deferred`, or `rejected`.
 
-At the end of each invocation, report the requested phase, phases changed, artifacts written, current state, blockers, and next recommended phase command.
+At the end of a completed invocation, report the requested phase, phases changed, artifacts written, current state, blockers, and next recommended phase command. When a quality gate pauses for context, report only a concise reason and the single pending question.

@@ -23,6 +23,16 @@ Suggested search questions:
 - Which workflow steps generate complaints or workarounds?
 - How do comparable products structure the flow?
 
+## Input quality gate
+
+Require a specific target user, one concrete trigger moment, and enough context to restore the current task. Use this internal question priority:
+
+1. “目标用户通常在什么具体时刻遇到这个问题？”
+2. “他们现在如何完成这个任务？”
+3. “当前流程中最关键的交接点在哪里？”
+
+Pass when at least one bounded before-during-after workflow can be described without assuming the final solution.
+
 ## Output
 
 Write `03-scenarios.md` with:
@@ -37,6 +47,10 @@ Write `03-scenarios.md` with:
 - phase conclusion and downstream handoff.
 
 Write `research/03-scenarios-research.md`.
+
+## Output quality gate
+
+Verify that trigger, actors, current flow, desired outcome, handoffs, frequency class, and boundary are explicit; the desired workflow expresses outcomes rather than invented implementation.
 
 ## Completion
 

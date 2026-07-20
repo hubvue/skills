@@ -26,11 +26,25 @@ Suggested search questions:
 - Which features do users value first?
 - Which features are costly but weak for validation?
 
+## Input quality gate
+
+Require a coherent solution, its capability inventory, the core value hypothesis, and known delivery constraints. Use this internal question priority for prioritization decisions:
+
+1. “首版必须验证的唯一核心价值假设是什么？”
+2. “哪项能力即使有价值也不能进入首版？”
+3. “首版不可突破的交付约束是什么？”
+
+Pass when one end-to-end validation path can be preserved and every proposed capability can be classified.
+
 ## Output
 
 Write `09-scope.md` with feature inventory, MVP, non-scope, future scope, tradeoff rationale, scope risks, Evidence Block, phase conclusion, and downstream handoff.
 
 Write `research/09-scope-research.md`.
+
+## Output quality gate
+
+Verify that MVP, non-scope, and future scope are mutually clear; the MVP remains end to end; exclusions have reasons; costly low-validation features are removed; scope risks are explicit.
 
 ## Gate
 

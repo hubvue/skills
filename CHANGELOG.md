@@ -6,6 +6,13 @@ All notable changes to this project will be documented in this file.
 
 ### Refactor
 - Renamed `idea-requirement` to `idea-incubation`, moved it under `productivity`, and replaced the orchestrator plus 12 public node skills with one phase-addressed workflow skill. The interface is `/idea-incubation <phase> [phase-input]`; the former node skills are internal references with one shared artifact, status, and research contract.
+- Made phase routing deterministic with valid-prefix healing, conservative forward reflow, idempotent repeats, terminal reopening, active-workspace selection, and interrupted-run recovery.
+
+### Features
+- Added input and output quality gates to all 12 phases. Missing decision-critical user context now enters a durable single-question loop that asks exactly one question per turn and resumes after each persisted answer. A new workspace validator enforces structural state and artifact invariants after mutations.
+
+### Fixes
+- Completed the phase status/decision matrix, added `blocked/retry` recovery, removed public workflow flags, normalized evidence levels and source freshness, and removed the phase-11 research self-dependency.
 
 ### Documentation
 - Updated `README.md`, `README.zh.md`, and the `productivity` marketplace registration for the single-skill `idea-incubation` interface.

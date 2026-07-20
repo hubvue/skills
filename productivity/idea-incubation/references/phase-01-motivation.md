@@ -23,6 +23,16 @@ Suggested search questions:
 - Are comparable ideas receiving sustained attention?
 - Are users or practitioners discussing the underlying problem?
 
+## Input quality gate
+
+Require a valid intake and a plausible reason the idea matters now. When the trigger or its meaning is user-specific, use this internal question priority:
+
+1. “发生了什么让你现在想推进这个想法？”
+2. “你亲自观察到的最关键现象是什么？”
+3. “这个现象让你怀疑存在什么问题？”
+
+Pass when at least one trigger is distinguishable from the proposed response and the problem hypothesis is testable.
+
 ## Output
 
 Write `01-motivation.md` with:
@@ -37,6 +47,10 @@ Write `01-motivation.md` with:
 - phase conclusion and downstream handoff.
 
 Write `research/01-motivation-research.md`.
+
+## Output quality gate
+
+Verify that trigger, motivation type, external background, internal interpretation, and problem hypothesis are distinct; unsupported urgency is not stated as fact; unresolved trigger assumptions are explicit.
 
 ## Completion
 
