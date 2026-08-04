@@ -2,20 +2,24 @@
 
 本项目的所有重要更改都将记录在此文件中。
 
-## 未发布
-
-### 重构
-- 将 `idea-requirement` 重命名为 `idea-incubation` 并迁入 `productivity`，同时把“编排器 + 12 个公共节点 Skill”收敛为一个按阶段调用的工作流 Skill。接口统一为 `/idea-incubation <phase> [阶段输入]`；原节点能力改为内部 references，共用一套产物、状态和研究契约。
-- 将阶段路由改为确定性协议，覆盖有效前缀补齐、保守向后重流、重复调用幂等、终态重开、活动工作区选择与中断恢复。
+## 1.14.0 - 2026-08-04
 
 ### 功能特性
-- 为 12 个阶段增加输入与输出质量门禁。缺少影响决策的用户上下文时，进入可持久化的单问题循环，每轮只询问一个问题，并在保存回答后继续评估；新增工作区校验器，在每次状态变更后检查状态与产物不变量。
+- `idea-incubation`: 用单一 productivity 技能替代原 `idea-requirement` 插件，通过 12 个内部阶段将原始想法孵化为可决策需求。接口为 `/idea-incubation <phase> [阶段输入]`。新增输入/输出质量门禁、可持久化单问题上下文循环、确定性路由/重流/幂等、工作区校验与中断恢复。
+- `breaking-refactor`: 新增 project 技能，用于规划、执行并验证有意为之的破坏性重构——在不保留运行时向后兼容的前提下替换既有设计，覆盖影响分析、切换计划、消费方同步更新，以及旧设计已清除的证据。
+- `project-migration`: 大幅增强，补充循环规则、更丰富的产物模板、迁移检查清单、扩展阶段指南、风险手册与状态 schema，以支撑更安全的分阶段迁移。
+
+### 重构
+- 移除 `idea-requirement` 插件及其 12 个公共节点技能（`idea-intake`、`motivation-clarify`、`painpoint-validate`、`scenario-restore`、`user-identify`、`goal-define`、`value-assess`、`scope-define`、`feasibility-assess`、`solution-design`、`acceptance-criteria`、`requirement-assemble`）。调用方需迁移到 `/idea-incubation <phase>`。
 
 ### 问题修复
-- 补齐阶段状态与决策映射、增加 `blocked/retry` 恢复、移除公开工作流参数、统一证据等级与来源新鲜度，并修复 assemble 阶段对自身研究文档的循环依赖。
+- `idea-incubation`: 补齐阶段状态与决策映射、增加 `blocked/retry` 恢复、移除公开工作流参数、统一证据等级与来源新鲜度，并修复 assemble 阶段对自身研究文档的循环依赖。
+
+### 其他
+- 新增 `skills-site` 子模块，用于技能文档/站点。
 
 ### 文档
-- 更新 `README.md`、`README.zh.md` 与 `productivity` marketplace 注册信息，统一使用单 Skill 的 `idea-incubation` 接口。
+- 更新 `README.md` 与 `README.zh.md`，补充 `idea-incubation`、`breaking-refactor` 及相关 marketplace 注册信息。
 
 ## 1.13.0 - 2026-06-23
 

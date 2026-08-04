@@ -7,7 +7,7 @@
   },
   "metadata": {
     "description": "Kim skills by claude plugin",
-    "version": "1.13.0"
+    "version": "1.14.0"
   },
   "plugins": [
     {
@@ -33,6 +33,7 @@
         "./project/project-handover-generator",
         "./project/doc-generator",
         "./project/project-migration",
+        "./project/breaking-refactor",
         "./project/clean-code"
       ]
     },

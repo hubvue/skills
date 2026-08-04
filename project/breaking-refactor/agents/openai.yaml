@@ -1,0 +1,4 @@
+interface:
+  display_name: "Breaking Refactor"
+  short_description: "Execute intentional breaking refactors safely"
+  default_prompt: "Use $breaking-refactor to replace this legacy contract, update every consumer, and remove the old runtime path."

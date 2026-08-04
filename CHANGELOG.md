@@ -2,20 +2,24 @@
 
 All notable changes to this project will be documented in this file.
 
-## Unreleased
-
-### Refactor
-- Renamed `idea-requirement` to `idea-incubation`, moved it under `productivity`, and replaced the orchestrator plus 12 public node skills with one phase-addressed workflow skill. The interface is `/idea-incubation <phase> [phase-input]`; the former node skills are internal references with one shared artifact, status, and research contract.
-- Made phase routing deterministic with valid-prefix healing, conservative forward reflow, idempotent repeats, terminal reopening, active-workspace selection, and interrupted-run recovery.
+## 1.14.0 - 2026-08-04
 
 ### Features
-- Added input and output quality gates to all 12 phases. Missing decision-critical user context now enters a durable single-question loop that asks exactly one question per turn and resumes after each persisted answer. A new workspace validator enforces structural state and artifact invariants after mutations.
+- `idea-incubation`: Replaces the former `idea-requirement` plugin with a single productivity skill that incubates a raw idea into a decision-ready requirement through 12 internal phases. Interface: `/idea-incubation <phase> [phase-input]`. Adds input/output quality gates, a durable single-question context loop, deterministic routing/reflow/idempotency, workspace validation, and interrupted-run recovery.
+- `breaking-refactor`: New project skill for planning, executing, and verifying intentional breaking refactors that replace an existing design without preserving runtime backward compatibility—covering impact analysis, cutover plans, consumer updates, and evidence that the legacy design is gone.
+- `project-migration`: Significant upgrade with loop rules, richer artifact templates, migration checklists, expanded phase guide, risk playbook, and status schema for safer phased migrations.
+
+### Refactor
+- Removed the `idea-requirement` plugin and its 12 public node skills (`idea-intake`, `motivation-clarify`, `painpoint-validate`, `scenario-restore`, `user-identify`, `goal-define`, `value-assess`, `scope-define`, `feasibility-assess`, `solution-design`, `acceptance-criteria`, `requirement-assemble`). Callers must migrate to `/idea-incubation <phase>`.
 
 ### Fixes
-- Completed the phase status/decision matrix, added `blocked/retry` recovery, removed public workflow flags, normalized evidence levels and source freshness, and removed the phase-11 research self-dependency.
+- `idea-incubation`: Completed the phase status/decision matrix, added `blocked/retry` recovery, removed public workflow flags, normalized evidence levels and source freshness, and removed the assemble-phase research self-dependency.
+
+### Other
+- Added `skills-site` submodule for the skills documentation/site.
 
 ### Documentation
-- Updated `README.md`, `README.zh.md`, and the `productivity` marketplace registration for the single-skill `idea-incubation` interface.
+- Updated `README.md` and `README.zh.md` for `idea-incubation`, `breaking-refactor`, and related marketplace registration.
 
 ## 1.13.0 - 2026-06-23
 

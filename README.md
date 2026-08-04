@@ -148,6 +148,12 @@ Project-related skills for documentation and analysis.
   4. Execute and verify - Track migration progress, blockers, validation, release readiness, and rollback
   5. Cleanup - Remove migration debt and define follow-up governance
 
+- **breaking-refactor** - Plans, executes, and verifies intentional breaking refactors that replace an existing design without preserving runtime backward compatibility. Coordinates in-scope consumer updates, removes compatibility layers and dual paths, and produces impact analysis, cutover plans, and evidence that the legacy design is gone.
+
+  **When to invoke:** When the user explicitly authorizes incompatible changes inside an owned scope—replacing APIs, modules, architecture, data models, schemas, events, configuration, or CLI contracts—and every in-scope consumer can be updated in one coordinated change.
+
+  **Key workflow:** Establish the refactor contract → analyze impact and breaking surfaces → plan cutover and validation → execute the single canonical design → verify legacy paths are gone and behavior that must remain is intact.
+
 - **clean-code** - Clean Code overview and router covering naming, functions, comments, formatting, objects and data structures, error handling, boundaries, tests, classes, systems, concurrency, simple design, progressive refinement, and code smells. Loads the matching rule file under references on demand instead of front-loading all rules.
 
   **When to invoke:** When reviewing code, refactoring, writing new code, or answering any clean code / code smell / readability question.
