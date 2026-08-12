@@ -307,6 +307,23 @@ Productivity tools for workflow optimization.
   - State missing information explicitly when the source material is incomplete
   - Keep the target skill scoped and maintainable
 
+- **tech-writing** - Turns complex engineering projects, frameworks, tools, and practices into reader-centered technical articles in Chinese or English. Supports repository research, article positioning, section planning, iterative co-writing, design explanation, evidence-backed examples, visual planning, factual review, and rewriting content that feels like a README, lacks substance, is hard to follow, or sounds AI-generated.
+
+  **When to invoke:** When drafting a technical article from scratch, continuing a long-form manuscript, revising individual sections, reviewing a finished draft, or rewriting engineering content for a defined reader.
+
+  **Working modes:**
+  - Section-by-section co-writing (default) - Plan first, then draft one section at a time with user approval
+  - Direct draft - Produce a full draft or direct file edits when explicitly requested
+  - Review - Diagnose and propose changes without editing unless authorized
+  - Continue - Recover accepted claims, structure, terminology, and voice before writing the next section
+
+  **Key workflow:**
+  1. Determine language and load the matching review guide
+  2. Research the repository/project and establish article positioning
+  3. Plan sections around the reader's path, not the codebase tree
+  4. Co-write or draft with evidence-backed examples and design explanation
+  5. Run factual and writing review gates before finalizing
+
 ### idea-incubation
 
 An evidence-driven workflow that incubates a raw product idea into a validated, decision-ready requirement. It exposes one public skill and keeps its 12 phases as internal references, giving one command ownership of routing, state, evidence, revisions, and durable artifacts.

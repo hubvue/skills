@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file.
 
+## 1.15.0 - 2026-08-12
+
+### Features
+- `tech-writing`: New productivity skill for turning complex engineering projects, frameworks, tools, and practices into reader-centered technical articles in Chinese or English. Supports repository research, article positioning, section-by-section co-writing, evidence-backed examples, visual planning, factual review, and rewriting content that feels like a README or AI-generated.
+
+### Documentation
+- Updated `README.md` and `README.zh.md` to document `tech-writing` and marketplace registration.
+
 ## 1.14.0 - 2026-08-04
 
 ### Features
