@@ -1,0 +1,4 @@
+interface:
+  display_name: "Technical Article Co-writing"
+  short_description: "Research, co-write, and fact-check technical articles in Chinese or English"
+  default_prompt: "Use $tech-writing to research this project and co-write a reader-centered technical article with me, one section at a time."
