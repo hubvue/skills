@@ -324,6 +324,17 @@ Productivity tools for workflow optimization.
   4. Co-write or draft with evidence-backed examples and design explanation
   5. Run factual and writing review gates before finalizing
 
+- **decision-boundary** - Passively constrains LLM behavior during delivery-oriented software work as a silent background guardrail. Separates confirmed facts from assumptions, preserves user-owned decisions, chooses the minimum sufficient design, makes only traceable surgical changes, resolves unknowns with evidence, verifies the stated goal, and stops when complete.
+
+  **When to invoke:** Applied automatically as a background guardrail during feature implementation, bug fixes, refactoring, technical design, API or component design, testing, and code review. Do not suppress breadth when the user explicitly requests brainstorming, speculative exploration, multiple alternatives, or forward-looking architecture.
+
+  **Key guardrails:**
+  - Govern autonomy - Keep decisions proportional to evidence and impact; treat generic best practices as defaults, never as authority over explicit user or project constraints
+  - Preserve user-owned decisions - Do not silently decide product scope, compatibility policy, public APIs, destructive operations, security/privacy, architecture direction, or acceptable risk
+  - Minimum sufficient design - Solve the stated problem; avoid speculative abstractions, extra layers, and hypothetical reuse
+  - Surgical changes - Modify only files and behavior needed to complete and verify the current goal
+  - Verify and stop - Confirm the goal, then stop; do not continue for cleanliness, generality, or future-proofing
+
 ### idea-incubation
 
 An evidence-driven workflow that incubates a raw product idea into a validated, decision-ready requirement. It exposes one public skill and keeps its 12 phases as internal references, giving one command ownership of routing, state, evidence, revisions, and durable artifacts.

@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file.
 
+## 1.16.0 - 2026-08-19
+
+### Features
+- `decision-boundary`: New productivity skill that passively constrains LLM behavior during delivery-oriented software work. Separates confirmed facts from assumptions, preserves user-owned decisions, chooses the minimum sufficient design, makes only traceable surgical changes, resolves unknowns with evidence, verifies the stated goal, and stops when complete. Applied automatically as a background guardrail without suppressing breadth when the user explicitly requests brainstorming, exploration, or forward-looking architecture.
+
+### Documentation
+- Updated `README.md` and `README.zh.md` to document `decision-boundary` and marketplace registration.
+
 ## 1.15.0 - 2026-08-12
 
 ### Features
