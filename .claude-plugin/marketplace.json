@@ -50,7 +50,8 @@
         "./productivity/deep-learning",
         "./productivity/doc-skill-creator",
         "./productivity/idea-incubation",
-        "./productivity/tech-writing"
+        "./productivity/tech-writing",
+        "./productivity/decision-boundary"
       ]
     },
     {
