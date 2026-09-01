@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file.
 
+## 1.17.0 - 2026-09-01
+
+### Features
+- `minimal`: New productivity skill that enforces the smallest correct change during code implementation, bug fixes, refactoring, UI or data-logic changes, tests, and code review. Requires evidence before adding conditions, fallbacks, compatibility logic, abstractions, files, state, or dependencies, then subtracts unjustified complexity and stops when acceptance criteria are met.
+
+### Documentation
+- Updated `README.md` and `README.zh.md` to document `minimal` and marketplace registration.
+
 ## 1.16.0 - 2026-08-19
 
 ### Features

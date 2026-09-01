@@ -335,6 +335,19 @@ Productivity tools for workflow optimization.
   - Surgical changes - Modify only files and behavior needed to complete and verify the current goal
   - Verify and stop - Confirm the goal, then stop; do not continue for cleanliness, generality, or future-proofing
 
+- **minimal** - Enforces the smallest correct change that matches requirement complexity. Before every meaningful action, decide whether it is necessary, overcomplicated, or replaceable by a simpler correct approach. Rejects unsupported conditions, fallbacks, compatibility logic, abstractions, files, states, dependencies, and unrelated refactors.
+
+  **When to invoke:** Use for code implementation, bug fixes, refactoring, UI or data-logic changes, tests, and code review. Do not use for pure explanation or research that neither modifies nor reviews code.
+
+  **Key workflow:**
+  1. Establish the task contract - goal, done-when, scope, non-goals, and existing contracts
+  2. Judge task level - simple tasks implement directly; complex tasks still pass the gates
+  3. Run the simplicity gate before every meaningful action
+  4. Require evidence before adding complexity
+  5. Implement the smallest correct change
+  6. Subtract unjustified complexity from the diff
+  7. Verify and stop
+
 ### idea-incubation
 
 An evidence-driven workflow that incubates a raw product idea into a validated, decision-ready requirement. It exposes one public skill and keeps its 12 phases as internal references, giving one command ownership of routing, state, evidence, revisions, and durable artifacts.
