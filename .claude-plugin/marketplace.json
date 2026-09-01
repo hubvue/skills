@@ -51,7 +51,8 @@
         "./productivity/doc-skill-creator",
         "./productivity/idea-incubation",
         "./productivity/tech-writing",
-        "./productivity/decision-boundary"
+        "./productivity/decision-boundary",
+        "./productivity/minimal"
       ]
     },
     {

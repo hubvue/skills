@@ -1,0 +1,4 @@
+interface:
+  display_name: "Minimal"
+  short_description: "Complete coding tasks with the smallest correct change; block unjustified checks, fallbacks, and abstractions"
+  default_prompt: "Use $minimal to complete the current coding task with the smallest correct change, and remove complexity that has no requirement justification."
