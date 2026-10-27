@@ -1,0 +1,4 @@
+interface:
+  display_name: "Code Review"
+  short_description: "Run evidence-based code review with bounded repair loops"
+  default_prompt: "Use $code-review to review the current changes and report evidence, blockers, and the next action."

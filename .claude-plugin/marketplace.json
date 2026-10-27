@@ -34,7 +34,8 @@
         "./project/doc-generator",
         "./project/project-migration",
         "./project/breaking-refactor",
-        "./project/clean-code"
+        "./project/clean-code",
+        "./project/code-review"
       ]
     },
     {
