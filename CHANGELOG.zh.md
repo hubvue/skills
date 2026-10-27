@@ -2,6 +2,14 @@
 
 本项目的所有重要更改都将记录在此文件中。
 
+## 1.18.0 - 2026-10-27
+
+### 功能特性
+- `code-review`: 新增 project 技能，对 pull request、分支 diff 或本地改动做证据驱动的代码审查。建立审查契约、运行最窄且相关的验证、在报告前核实缺陷，并给出 `READY`、`CHANGES_REQUESTED`、`NEEDS_EVIDENCE` 或 `REPLAN`。支持仅审查、授权后的审查并修复，以及有修复预算的复审。不是全仓库审计或纯风格清理。
+
+### 文档
+- 更新 `README.md` 与 `README.zh.md`，补充 `code-review` 说明及 marketplace 注册。
+
 ## 1.17.0 - 2026-09-01
 
 ### 功能特性

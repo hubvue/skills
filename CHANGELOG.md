@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file.
 
+## 1.18.0 - 2026-10-27
+
+### Features
+- `code-review`: New project skill for evidence-based review of a pull request, branch diff, or local changes. Establishes a review contract, runs the narrowest relevant verification, substantiates findings before reporting them, and returns `READY`, `CHANGES_REQUESTED`, `NEEDS_EVIDENCE`, or `REPLAN`. Supports review-only, authorized review-and-fix, and re-review within a repair budget. Not a whole-repository audit or style-only cleanup.
+
+### Documentation
+- Updated `README.md` and `README.zh.md` to document `code-review` and marketplace registration.
+
 ## 1.17.0 - 2026-09-01
 
 ### Features

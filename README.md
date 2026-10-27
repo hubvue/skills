@@ -160,6 +160,17 @@ Project-related skills for documentation and analysis.
 
   **Key behavior:** Acts as a topic router - identifies the relevant clean code concern and loads the corresponding reference rule file (e.g. meaningful names, functions, error handling, code smells) to apply focused guidance.
 
+- **code-review** - Evidence-based review of a pull request, branch diff, or local changes. Turns a defined change into `READY`, `CHANGES_REQUESTED`, `NEEDS_EVIDENCE`, or `REPLAN`, with effort proportional to risk and requested scope.
+
+  **When to invoke:** When the user requests CR, code review, re-review, or a bounded review-and-fix loop and needs actionable findings plus a readiness decision. Not a whole-repository audit or a style-only cleanup workflow.
+
+  **Key workflow:**
+  1. Define the review contract - comparison range, unchanged behavior, affected contracts, and change risk
+  2. Establish verification evidence - run the narrowest relevant checks on the reviewed revision
+  3. Find and substantiate defects - report only findings with trigger, violated contract, consequence, and evidence
+  4. Resolve and re-review within a budget - review-only by default; authorized repairs stay within at most three rounds
+  5. Decide and hand off - return version/scope, state, findings, verification, remaining risk, and next action
+
 ### context-engineering
 
 Context engineering skills for prompt optimization and management.
